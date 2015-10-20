@@ -140,7 +140,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't added any waypoints to your trip!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4f-tj-DQz">
-                                        <rect key="frame" x="175" y="53" width="250" height="67"/>
+                                        <rect key="frame" x="175" y="63" width="250" height="67"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="67" id="dDX-Ws-5HE"/>
@@ -150,12 +150,26 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sh3-Xg-Cce">
+                                        <rect key="frame" x="251" y="148" width="99" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="99" id="QWE-8Y-0IH"/>
+                                            <constraint firstAttribute="height" constant="30" id="Yp6-9Y-EOE"/>
+                                        </constraints>
+                                        <state key="normal" title="Get Started!"/>
+                                        <connections>
+                                            <action selector="getStartedPressed:" destination="kGX-UD-JOe" eventType="touchUpInside" id="nU8-VI-5ac"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="v4f-tj-DQz" firstAttribute="centerX" secondItem="Z2o-bx-jqI" secondAttribute="centerX" id="4rP-m5-Sli"/>
-                                    <constraint firstItem="v4f-tj-DQz" firstAttribute="top" secondItem="Z2o-bx-jqI" secondAttribute="top" constant="53" id="xve-TK-ISs"/>
+                                    <constraint firstItem="sh3-Xg-Cce" firstAttribute="top" secondItem="v4f-tj-DQz" secondAttribute="bottom" constant="18" id="cQC-ev-D0b"/>
+                                    <constraint firstItem="sh3-Xg-Cce" firstAttribute="centerX" secondItem="Z2o-bx-jqI" secondAttribute="centerX" id="rXN-go-QnI"/>
+                                    <constraint firstItem="v4f-tj-DQz" firstAttribute="top" secondItem="Z2o-bx-jqI" secondAttribute="top" constant="63" id="xve-TK-ISs"/>
                                 </constraints>
                             </view>
                         </subviews>

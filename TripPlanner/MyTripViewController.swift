@@ -18,5 +18,9 @@ class MyTripViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func getStartedPressed(sender: AnyObject) {
+        print("get started!")
+    }
 
 }
