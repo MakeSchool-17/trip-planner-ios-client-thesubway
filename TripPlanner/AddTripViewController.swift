@@ -10,6 +10,7 @@ import UIKit
 
 class AddTripViewController: UIViewController {
 
+    @IBOutlet var tripTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,6 +22,9 @@ class AddTripViewController: UIViewController {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    @IBAction func addPressed(sender: AnyObject) {
+        print(self.tripTextField!.text)
     }
 
 }
