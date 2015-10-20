@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA2C1BCC334A00676972 /* AppDelegate.swift */; };
-		2725EA2F1BCC334A00676972 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA2E1BCC334A00676972 /* ViewController.swift */; };
+		2725EA2F1BCC334A00676972 /* PlannedTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */; };
 		2725EA321BCC334A00676972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2725EA301BCC334A00676972 /* Main.storyboard */; };
 		2725EA351BCC334A00676972 /* TripPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA331BCC334A00676972 /* TripPlanner.xcdatamodeld */; };
 		2725EA371BCC334A00676972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2725EA361BCC334A00676972 /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		2725EA291BCC334A00676972 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2725EA2C1BCC334A00676972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2725EA2E1BCC334A00676972 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedTripsViewController.swift; sourceTree = "<group>"; };
 		2725EA311BCC334A00676972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2725EA341BCC334A00676972 /* TripPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripPlanner.xcdatamodel; sourceTree = "<group>"; };
 		2725EA361BCC334A00676972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				2725EA2C1BCC334A00676972 /* AppDelegate.swift */,
-				2725EA2E1BCC334A00676972 /* ViewController.swift */,
+				2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */,
 				2725EA301BCC334A00676972 /* Main.storyboard */,
 				2725EA361BCC334A00676972 /* Assets.xcassets */,
 				2725EA381BCC334A00676972 /* LaunchScreen.storyboard */,
@@ -258,7 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2725EA2F1BCC334A00676972 /* ViewController.swift in Sources */,
+				2725EA2F1BCC334A00676972 /* PlannedTripsViewController.swift in Sources */,
 				2725EA351BCC334A00676972 /* TripPlanner.xcdatamodeld in Sources */,
 				2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */,
 			);
@@ -487,6 +487,7 @@
 				2725EA561BCC334B00676972 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2725EA571BCC334B00676972 /* Build configuration list for PBXNativeTarget "TripPlannerTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +496,7 @@
 				2725EA591BCC334B00676972 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2725EA5A1BCC334B00676972 /* Build configuration list for PBXNativeTarget "TripPlannerUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +505,7 @@
 				2725EA5C1BCC334B00676972 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
