@@ -59,6 +59,41 @@
             </objects>
             <point key="canvasLocation" x="1117" y="374"/>
         </scene>
+        <!--Add Trip View Controller-->
+        <scene sceneID="fYZ-pJ-dbu">
+            <objects>
+                <viewController storyboardIdentifier="addTripVC" id="Dge-3W-Srz" customClass="AddTripViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gTl-3p-XeG"/>
+                        <viewControllerLayoutGuide type="bottom" id="lhB-KG-tb4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uVH-f3-cRA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fec-AD-QWm">
+                                <rect key="frame" x="215" y="70" width="170" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="3bC-AX-ILY"/>
+                                    <constraint firstAttribute="height" constant="30" id="3dU-dv-Pla"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fec-AD-QWm" firstAttribute="top" secondItem="gTl-3p-XeG" secondAttribute="bottom" constant="50" id="ofS-qc-9Nz"/>
+                            <constraint firstItem="fec-AD-QWm" firstAttribute="centerX" secondItem="uVH-f3-cRA" secondAttribute="centerX" id="sUT-Sd-Lxx"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d5S-d9-6YD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="374"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zv3-b3-TK0">
             <objects>

@@ -39,7 +39,8 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     @IBAction func addPressed(sender: AnyObject) {
-        print("add")
+        let addTripVC = self.storyboard?.instantiateViewControllerWithIdentifier("addTripVC") as! AddTripViewController
+        self.navigationController?.pushViewController(addTripVC, animated: true)
     }
 }
 
