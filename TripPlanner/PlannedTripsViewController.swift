@@ -37,6 +37,11 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         cell?.textLabel?.text = self.trips[indexPath.row]
         return cell!
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let myTripVC = self.storyboard?.instantiateViewControllerWithIdentifier("myTripVC") as! MyTripViewController
+        self.navigationController?.pushViewController(myTripVC, animated: true)
+    }
 
     @IBAction func addPressed(sender: AnyObject) {
         let addTripVC = self.storyboard?.instantiateViewControllerWithIdentifier("addTripVC") as! AddTripViewController

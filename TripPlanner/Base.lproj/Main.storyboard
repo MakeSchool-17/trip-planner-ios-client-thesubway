@@ -124,6 +124,55 @@
             </objects>
             <point key="canvasLocation" x="1790" y="374"/>
         </scene>
+        <!--My Trip View Controller-->
+        <scene sceneID="DNb-ZS-r4b">
+            <objects>
+                <viewController storyboardIdentifier="myTripVC" id="kGX-UD-JOe" customClass="MyTripViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eUU-54-euB"/>
+                        <viewControllerLayoutGuide type="bottom" id="N97-bE-CoL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zyZ-zj-AXN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2o-bx-jqI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't added any waypoints to your trip!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4f-tj-DQz">
+                                        <rect key="frame" x="175" y="53" width="250" height="67"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="67" id="dDX-Ws-5HE"/>
+                                            <constraint firstAttribute="width" constant="250" id="e4t-I0-DRa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="v4f-tj-DQz" firstAttribute="centerX" secondItem="Z2o-bx-jqI" secondAttribute="centerX" id="4rP-m5-Sli"/>
+                                    <constraint firstItem="v4f-tj-DQz" firstAttribute="top" secondItem="Z2o-bx-jqI" secondAttribute="top" constant="53" id="xve-TK-ISs"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Z2o-bx-jqI" firstAttribute="leading" secondItem="zyZ-zj-AXN" secondAttribute="leadingMargin" constant="-20" id="4U8-1l-KfJ"/>
+                            <constraint firstItem="N97-bE-CoL" firstAttribute="top" secondItem="Z2o-bx-jqI" secondAttribute="bottom" id="YBp-fS-f9U"/>
+                            <constraint firstItem="Z2o-bx-jqI" firstAttribute="top" secondItem="zyZ-zj-AXN" secondAttribute="topMargin" id="oNR-Kq-gZI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z2o-bx-jqI" secondAttribute="trailing" constant="-20" id="zNq-VI-qdG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QLG-Pu-gVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="1072"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zv3-b3-TK0">
             <objects>
