@@ -12,11 +12,11 @@ class MyTripViewController: UIViewController {
 
     @IBOutlet var hasWaypointsView: UIView!
     @IBOutlet var noWaypointsView: UIView!
-    var hasWaypoints = true
+    var waypoints = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hasWaypoints = false
-        if self.hasWaypoints == false {
+        if self.waypoints.count == 0 {
             self.view.bringSubviewToFront(self.noWaypointsView)
         }
         else {
