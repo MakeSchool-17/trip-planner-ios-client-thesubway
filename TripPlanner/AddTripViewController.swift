@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol AddTripVCDelegate {
+    func tripAddedFromVC(tripName : String)
+}
+
 class AddTripViewController: UIViewController {
 
+    var delegate : AddTripVCDelegate!
     @IBOutlet var tripTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,7 +30,8 @@ class AddTripViewController: UIViewController {
         self.view.endEditing(true)
     }
     @IBAction func addPressed(sender: AnyObject) {
-        print(self.tripTextField!.text)
+        self.delegate.tripAddedFromVC(self.tripTextField.text!)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
 }

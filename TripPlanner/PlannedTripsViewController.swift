@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddTripVCDelegate {
 
     @IBOutlet var tableView: UITableView!
     var trips = [String]()
@@ -40,7 +40,13 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBAction func addPressed(sender: AnyObject) {
         let addTripVC = self.storyboard?.instantiateViewControllerWithIdentifier("addTripVC") as! AddTripViewController
+        addTripVC.delegate = self
         self.navigationController?.pushViewController(addTripVC, animated: true)
+    }
+    
+    func tripAddedFromVC(tripName: String) {
+        self.trips.append(tripName)
+        self.tableView.reloadData()
     }
 }
 
