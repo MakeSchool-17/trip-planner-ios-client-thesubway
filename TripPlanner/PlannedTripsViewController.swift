@@ -38,5 +38,8 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         return cell!
     }
 
+    @IBAction func addPressed(sender: AnyObject) {
+        print("add")
+    }
 }
 

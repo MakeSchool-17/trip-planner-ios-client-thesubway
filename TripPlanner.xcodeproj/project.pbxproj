@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2720F6A41BD6C6F800F404E8 /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA2C1BCC334A00676972 /* AppDelegate.swift */; };
 		2725EA2F1BCC334A00676972 /* PlannedTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */; };
 		2725EA321BCC334A00676972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2725EA301BCC334A00676972 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		2725EA291BCC334A00676972 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2725EA2C1BCC334A00676972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedTripsViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				2725EA2C1BCC334A00676972 /* AppDelegate.swift */,
 				2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */,
+				2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */,
 				2725EA301BCC334A00676972 /* Main.storyboard */,
 				2725EA361BCC334A00676972 /* Assets.xcassets */,
 				2725EA381BCC334A00676972 /* LaunchScreen.storyboard */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2725EA2F1BCC334A00676972 /* PlannedTripsViewController.swift in Sources */,
+				2720F6A41BD6C6F800F404E8 /* AddTripViewController.swift in Sources */,
 				2725EA351BCC334A00676972 /* TripPlanner.xcdatamodeld in Sources */,
 				2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */,
 			);
