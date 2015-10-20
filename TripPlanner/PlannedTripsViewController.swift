@@ -10,9 +10,14 @@ import UIKit
 
 class PlannedTripsViewController: UIViewController {
 
+    var trips = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        trips.append("Trip to San Francisco")
+        trips.append("Trip to Stuttgart")
+        trips.append("Trip to Moscow")
+        trips.append("Trip to Brasilia")
     }
 
     override func didReceiveMemoryWarning() {
