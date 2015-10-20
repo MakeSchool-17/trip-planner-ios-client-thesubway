@@ -136,6 +136,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5v-aI-LB2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2o-bx-jqI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
@@ -177,11 +182,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Z2o-bx-jqI" firstAttribute="leading" secondItem="zyZ-zj-AXN" secondAttribute="leadingMargin" constant="-20" id="4U8-1l-KfJ"/>
+                            <constraint firstItem="c5v-aI-LB2" firstAttribute="top" secondItem="zyZ-zj-AXN" secondAttribute="topMargin" id="JMg-50-XIk"/>
+                            <constraint firstItem="c5v-aI-LB2" firstAttribute="leading" secondItem="zyZ-zj-AXN" secondAttribute="leadingMargin" constant="-20" id="Jsq-gR-4Qu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c5v-aI-LB2" secondAttribute="trailing" constant="-20" id="L38-jQ-Gfc"/>
+                            <constraint firstItem="N97-bE-CoL" firstAttribute="top" secondItem="c5v-aI-LB2" secondAttribute="bottom" id="P7b-yg-7ju"/>
                             <constraint firstItem="N97-bE-CoL" firstAttribute="top" secondItem="Z2o-bx-jqI" secondAttribute="bottom" id="YBp-fS-f9U"/>
                             <constraint firstItem="Z2o-bx-jqI" firstAttribute="top" secondItem="zyZ-zj-AXN" secondAttribute="topMargin" id="oNR-Kq-gZI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Z2o-bx-jqI" secondAttribute="trailing" constant="-20" id="zNq-VI-qdG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hasWaypointsView" destination="c5v-aI-LB2" id="vue-zg-vrZ"/>
+                        <outlet property="noWaypointsView" destination="Z2o-bx-jqI" id="h7k-dC-ZuB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLG-Pu-gVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
