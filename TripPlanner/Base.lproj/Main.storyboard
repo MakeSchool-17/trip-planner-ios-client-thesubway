@@ -72,17 +72,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fec-AD-QWm">
-                                <rect key="frame" x="215" y="100" width="170" height="30"/>
+                                <rect key="frame" x="195" y="141" width="210" height="30"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="170" id="3bC-AX-ILY"/>
+                                    <constraint firstAttribute="width" constant="210" id="3bC-AX-ILY"/>
                                     <constraint firstAttribute="height" constant="30" id="3dU-dv-Pla"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6N-Oy-F2S">
-                                <rect key="frame" x="258" y="149" width="85" height="30"/>
+                                <rect key="frame" x="258" y="190" width="85" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="3tM-6o-qBF"/>
@@ -93,13 +93,26 @@
                                     <action selector="addPressed:" destination="Dge-3W-Srz" eventType="touchUpInside" id="1qg-3Q-Ga5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give this trip a name!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-gE-9Rq">
+                                <rect key="frame" x="203" y="90" width="195" height="27"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="bOO-I9-X3D"/>
+                                    <constraint firstAttribute="width" constant="195" id="qg4-WH-MYm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="V6N-Oy-F2S" firstAttribute="top" secondItem="fec-AD-QWm" secondAttribute="bottom" constant="19" id="97m-W7-Nhp"/>
                             <constraint firstItem="V6N-Oy-F2S" firstAttribute="centerX" secondItem="uVH-f3-cRA" secondAttribute="centerX" id="Iyu-U2-cSI"/>
-                            <constraint firstItem="fec-AD-QWm" firstAttribute="top" secondItem="gTl-3p-XeG" secondAttribute="bottom" constant="80" id="ofS-qc-9Nz"/>
+                            <constraint firstItem="tUh-gE-9Rq" firstAttribute="top" secondItem="gTl-3p-XeG" secondAttribute="bottom" constant="70" id="e5l-CD-maC"/>
+                            <constraint firstItem="tUh-gE-9Rq" firstAttribute="centerX" secondItem="uVH-f3-cRA" secondAttribute="centerX" id="ipi-2R-sdS"/>
+                            <constraint firstItem="fec-AD-QWm" firstAttribute="top" secondItem="tUh-gE-9Rq" secondAttribute="bottom" constant="24" id="lET-TQ-qjS"/>
                             <constraint firstItem="fec-AD-QWm" firstAttribute="centerX" secondItem="uVH-f3-cRA" secondAttribute="centerX" id="sUT-Sd-Lxx"/>
                         </constraints>
                     </view>
