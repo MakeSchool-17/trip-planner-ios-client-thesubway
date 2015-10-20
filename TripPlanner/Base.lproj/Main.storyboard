@@ -22,7 +22,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7PG-Hh-QOQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tripCell" id="7PG-Hh-QOQ">
                                         <rect key="frame" x="0.0" y="92" width="600" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7PG-Hh-QOQ" id="cFw-A0-Kzy">
@@ -45,6 +45,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2el-kc-CrG"/>
+                    <connections>
+                        <outlet property="tableView" destination="Fxk-tw-5NM" id="9D0-LO-6ng"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

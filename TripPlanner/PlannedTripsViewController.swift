@@ -8,8 +8,9 @@
 
 import UIKit
 
-class PlannedTripsViewController: UIViewController {
+class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet var tableView: UITableView!
     var trips = [String]()
     
     override func viewDidLoad() {
@@ -18,13 +19,24 @@ class PlannedTripsViewController: UIViewController {
         trips.append("Trip to Stuttgart")
         trips.append("Trip to Moscow")
         trips.append("Trip to Brasilia")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.trips.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("tripCell")
+        cell?.textLabel?.text = self.trips[indexPath.row]
+        return cell!
+    }
 
 }
 
