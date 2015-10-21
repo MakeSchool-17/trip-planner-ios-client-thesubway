@@ -37,10 +37,19 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func getStartedPressed(sender: AnyObject) {
-        print("get started!")
+        self.addWayPoints(false)
     }
     @IBAction func addMorePressed(sender: AnyObject) {
-        print("add more")
+        self.addWayPoints(true)
+    }
+    
+    func addWayPoints(hasWaypoints: Bool) {
+        if hasWaypoints {
+            print("add more")
+        }
+        else {
+            print("get started!")
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
