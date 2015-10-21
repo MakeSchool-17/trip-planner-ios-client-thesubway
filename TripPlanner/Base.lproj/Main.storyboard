@@ -336,23 +336,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTu-F1-ob0">
                                 <rect key="frame" x="0.0" y="64" width="600" height="38"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-aQ-5Hn">
-                                        <rect key="frame" x="5" y="4" width="590" height="30"/>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ruI-g3-RDg">
+                                        <rect key="frame" x="0.0" y="-3" width="600" height="44"/>
                                         <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Clh-Xh-d0c"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    </searchBar>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.90060478340000005" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="8mP-Lg-yn5"/>
-                                    <constraint firstItem="vDY-aQ-5Hn" firstAttribute="leading" secondItem="uTu-F1-ob0" secondAttribute="leading" constant="5" id="IZN-y7-vU6"/>
-                                    <constraint firstAttribute="trailing" secondItem="vDY-aQ-5Hn" secondAttribute="trailing" constant="5" id="OBL-zi-qRw"/>
-                                    <constraint firstItem="vDY-aQ-5Hn" firstAttribute="centerY" secondItem="uTu-F1-ob0" secondAttribute="centerY" id="Uj7-J1-frY"/>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-vl-9Mg">
@@ -434,8 +427,8 @@
                     <connections>
                         <outlet property="lblWaypoint" destination="fxA-eI-zFl" id="SJP-ue-pIh"/>
                         <outlet property="mapView" destination="ZzG-vl-9Mg" id="ksX-vC-mdG"/>
+                        <outlet property="searchBar" destination="ruI-g3-RDg" id="iB8-9L-Emc"/>
                         <outlet property="searchTableView" destination="Wpl-bB-HDq" id="44Q-cx-3EA"/>
-                        <outlet property="searchTextField" destination="vDY-aQ-5Hn" id="nVn-jH-oWB"/>
                         <outlet property="waypointView" destination="J08-1o-8Vl" id="gPd-FZ-U8W"/>
                     </connections>
                 </viewController>

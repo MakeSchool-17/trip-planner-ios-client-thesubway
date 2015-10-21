@@ -9,10 +9,10 @@
 import UIKit
 import MapKit
 
-class AddWaypointViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate {
+class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate {
 
     @IBOutlet var searchTableView: UITableView!
-    @IBOutlet var searchTextField: UITextField!
+    @IBOutlet var searchBar: UISearchBar!
     
     @IBOutlet var waypointView: UIView!
     var currentWaypoint : String!
@@ -22,7 +22,7 @@ class AddWaypointViewController: UIViewController, UITextFieldDelegate, MKMapVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchTextField.delegate = self
+        self.searchBar.delegate = self
         self.mapView.delegate = self
         if self.currentWaypoint != nil {
             self.searchTableView.hidden = true
@@ -40,9 +40,9 @@ class AddWaypointViewController: UIViewController, UITextFieldDelegate, MKMapVie
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print("search for \(searchBar.text!)")
         self.view.endEditing(true)
-        return true
     }
 
 }
