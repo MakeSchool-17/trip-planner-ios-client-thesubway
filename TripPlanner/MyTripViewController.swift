@@ -49,17 +49,15 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     func addWayPoints(clickedWaypoint: String!) {
         let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
+        if clickedWaypoint != nil {
+            addWaypointVC?.currentWaypoint = clickedWaypoint
+        }
         self.navigationController?.pushViewController(addWaypointVC!, animated: true)
-        if clickedWaypoint == nil {
-            print("search")
-        }
-        else {
-            print("current waypoint")
-        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.addWayPoints(self.waypoints[indexPath.row])
+        let waypoint : String = self.waypoints[indexPath.row]
+        self.addWayPoints(waypoint)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
