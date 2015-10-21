@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate {
+class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet var searchTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
@@ -19,6 +19,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     @IBOutlet var lblWaypoint: UILabel!
     
     @IBOutlet var mapView: MKMapView!
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,36 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         print("search for \(searchBar.text!)")
         self.view.endEditing(true)
+        
+        if CLLocationManager.locationServicesEnabled() == false {
+            print("location services disabled")
+            return
+        }
+        else {
+            print("location services enabled!")
+        }
+        
+        self.locationManager.delegate = self
+        
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            //add NSLocationWhenInUsageDescription and NSLocationAlwaysUsageDescription, as keys, to plist
+            self.locationManager.requestWhenInUseAuthorization()
+            print("requesting for authorization")
+        }
+        else if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
+            print("status denied")
+            return
+        }
+        else {
+            print("enabled")
+        }
+        
+        //after user confirmation (authorized), then may update location
+        self.locationManager.startUpdatingLocation()
+        
+        //in order to have current location, must have CLLocation.
+        
+        //before actually inputting the searchString, must have access to current region.
     }
 
 }
