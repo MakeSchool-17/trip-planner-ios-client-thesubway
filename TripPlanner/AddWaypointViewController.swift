@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import MapKit
 
-class AddWaypointViewController: UIViewController {
+class AddWaypointViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate {
 
     @IBOutlet var searchTableView: UITableView!
+    @IBOutlet var searchTextField: UITextField!
     
     @IBOutlet var waypointView: UIView!
     var currentWaypoint : String!
     @IBOutlet var lblWaypoint: UILabel!
     
+    @IBOutlet var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchTextField.delegate = self
+        self.mapView.delegate = self
         if self.currentWaypoint != nil {
             self.searchTableView.hidden = true
             self.waypointView.hidden = false
@@ -32,6 +38,11 @@ class AddWaypointViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 
 }

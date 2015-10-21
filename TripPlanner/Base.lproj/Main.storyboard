@@ -433,7 +433,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="lblWaypoint" destination="fxA-eI-zFl" id="SJP-ue-pIh"/>
+                        <outlet property="mapView" destination="ZzG-vl-9Mg" id="ksX-vC-mdG"/>
                         <outlet property="searchTableView" destination="Wpl-bB-HDq" id="44Q-cx-3EA"/>
+                        <outlet property="searchTextField" destination="vDY-aQ-5Hn" id="nVn-jH-oWB"/>
                         <outlet property="waypointView" destination="J08-1o-8Vl" id="gPd-FZ-U8W"/>
                     </connections>
                 </viewController>
