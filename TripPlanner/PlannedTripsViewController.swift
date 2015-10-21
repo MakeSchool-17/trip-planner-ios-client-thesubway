@@ -41,7 +41,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let myTripVC = self.storyboard?.instantiateViewControllerWithIdentifier("myTripVC") as! MyTripViewController
         for (var i = 0; i < indexPath.row; i++) {
-            myTripVC.waypoints.append("Trip \(i)")
+            myTripVC.waypoints.append("Waypoint \(i)")
         }
         self.navigationController?.pushViewController(myTripVC, animated: true)
     }

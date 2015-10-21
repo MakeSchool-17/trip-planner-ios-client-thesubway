@@ -8,11 +8,12 @@
 
 import UIKit
 
-class MyTripViewController: UIViewController {
+class MyTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var hasWaypointsView: UIView!
     @IBOutlet var noWaypointsView: UIView!
     var waypoints = [String]()
+    @IBOutlet var waypointTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class MyTripViewController: UIViewController {
         else {
             self.view.bringSubviewToFront(self.hasWaypointsView)
         }
+        self.waypointTableView.delegate = self
+        self.waypointTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +34,16 @@ class MyTripViewController: UIViewController {
     
     @IBAction func getStartedPressed(sender: AnyObject) {
         print("get started!")
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.waypoints.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("waypointCell")
+        cell?.textLabel?.text = waypoints[indexPath.row]
+        return cell!
     }
 
 }
