@@ -43,6 +43,8 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         for (var i = 0; i < indexPath.row; i++) {
             myTripVC.waypoints.append("Waypoint \(i)")
         }
+        myTripVC.tripDestination = "Destination: \(self.trips[indexPath.row])"
+        myTripVC.tripTravelDate = "Travel Date: 07/11/16"
         self.navigationController?.pushViewController(myTripVC, animated: true)
     }
 

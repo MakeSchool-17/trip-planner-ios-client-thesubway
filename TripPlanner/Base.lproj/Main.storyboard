@@ -206,11 +206,11 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YC8-hf-qjn">
                                                 <rect key="frame" x="153" y="25" width="294" height="128"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination: Stuttgart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-BD-Xf0">
-                                                        <rect key="frame" x="87" y="0.0" width="190" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination: Stuttgart" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-BD-Xf0">
+                                                        <rect key="frame" x="87" y="0.0" width="190" height="48"/>
                                                         <animations/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="21" id="Grf-lr-fBp"/>
+                                                            <constraint firstAttribute="height" constant="48" id="Grf-lr-fBp"/>
                                                             <constraint firstAttribute="width" constant="190" id="Ufu-sc-aYT"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -246,7 +246,7 @@
                                                         </variation>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Date: 07/11/16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4X-Wu-sDU">
-                                                        <rect key="frame" x="87" y="29" width="190" height="21"/>
+                                                        <rect key="frame" x="87" y="56" width="190" height="21"/>
                                                         <animations/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="F69-1Z-e4t"/>

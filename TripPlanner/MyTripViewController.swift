@@ -14,6 +14,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var tripImageView: UIImageView!
     @IBOutlet var lblDestination: UILabel!
     @IBOutlet var lblTravelDate: UILabel!
+    var tripDestination = ""
+    var tripTravelDate = ""
     
     @IBOutlet var noWaypointsView: UIView!
     var waypoints = [String]()
@@ -29,6 +31,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         }
         self.waypointTableView.delegate = self
         self.waypointTableView.dataSource = self
+        self.lblDestination.text = self.tripDestination
+        self.lblTravelDate.text = self.tripTravelDate
     }
 
     override func didReceiveMemoryWarning() {
