@@ -14,15 +14,18 @@ class AddWaypointViewController: UIViewController {
     
     @IBOutlet var waypointView: UIView!
     var currentWaypoint : String!
+    @IBOutlet var lblWaypoint: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.currentWaypoint == nil {
-            self.searchTableView.hidden = false
-            self.waypointView.hidden = true
-        }
-        else {
+        if self.currentWaypoint != nil {
             self.searchTableView.hidden = true
             self.waypointView.hidden = false
+            self.lblWaypoint.text = currentWaypoint
+        }
+        else {
+            self.searchTableView.hidden = false
+            self.waypointView.hidden = true
         }
     }
 

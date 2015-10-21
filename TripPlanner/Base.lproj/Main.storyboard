@@ -377,8 +377,26 @@
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J08-1o-8Vl">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="142"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxA-eI-zFl">
+                                                <rect key="frame" x="165" y="60" width="270" height="21"/>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="270" id="Gbo-XL-bl6"/>
+                                                    <constraint firstAttribute="height" constant="21" id="tL4-TS-sXn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="fxA-eI-zFl" firstAttribute="centerX" secondItem="J08-1o-8Vl" secondAttribute="centerX" id="M9D-uI-wJR"/>
+                                            <constraint firstItem="fxA-eI-zFl" firstAttribute="centerY" secondItem="J08-1o-8Vl" secondAttribute="centerY" id="Oev-9y-l5l"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <animations/>
@@ -414,6 +432,7 @@
                     <navigationItem key="navigationItem" title="Add Waypoint" id="eDS-9u-66e"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="lblWaypoint" destination="fxA-eI-zFl" id="SJP-ue-pIh"/>
                         <outlet property="searchTableView" destination="Wpl-bB-HDq" id="44Q-cx-3EA"/>
                         <outlet property="waypointView" destination="J08-1o-8Vl" id="gPd-FZ-U8W"/>
                     </connections>
