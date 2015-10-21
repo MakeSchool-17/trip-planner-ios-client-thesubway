@@ -68,11 +68,11 @@
                         <viewControllerLayoutGuide type="bottom" id="lhB-KG-tb4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uVH-f3-cRA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fec-AD-QWm">
-                                <rect key="frame" x="195" y="141" width="210" height="30"/>
+                                <rect key="frame" x="195" y="121" width="210" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="3bC-AX-ILY"/>
@@ -82,7 +82,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6N-Oy-F2S">
-                                <rect key="frame" x="258" y="190" width="85" height="30"/>
+                                <rect key="frame" x="258" y="170" width="85" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="3tM-6o-qBF"/>
@@ -94,7 +94,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give this trip a name!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-gE-9Rq">
-                                <rect key="frame" x="203" y="90" width="195" height="27"/>
+                                <rect key="frame" x="203" y="70" width="195" height="27"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="bOO-I9-X3D"/>
@@ -116,6 +116,14 @@
                             <constraint firstItem="fec-AD-QWm" firstAttribute="centerX" secondItem="uVH-f3-cRA" secondAttribute="centerX" id="sUT-Sd-Lxx"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sh3-Sp-TiN">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="mhl-cA-idZ">
+                            <connections>
+                                <action selector="addPressed:" destination="Dge-3W-Srz" id="T0X-2D-tWA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tripTextField" destination="fec-AD-QWm" id="8ga-3t-lHz"/>
                     </connections>
@@ -195,8 +203,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWa-qi-n7a">
                                         <rect key="frame" x="0.0" y="51" width="600" height="200"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YC8-hf-qjn">
-                                                <rect key="frame" x="166" y="25" width="270" height="128"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YC8-hf-qjn">
+                                                <rect key="frame" x="153" y="25" width="294" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination: Stuttgart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-BD-Xf0">
                                                         <rect key="frame" x="87" y="0.0" width="190" height="21"/>
@@ -209,8 +217,8 @@
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PR-fa-R4s">
-                                                        <rect key="frame" x="59" y="84" width="150" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PR-fa-R4s">
+                                                        <rect key="frame" x="72" y="84" width="150" height="30"/>
                                                         <animations/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="K4g-xm-C8h"/>

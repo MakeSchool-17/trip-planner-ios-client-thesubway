@@ -30,6 +30,14 @@ class AddTripViewController: UIViewController {
         self.view.endEditing(true)
     }
     @IBAction func addPressed(sender: AnyObject) {
+        if self.tripTextField.text == "" {
+            let alert = UIAlertController(title: "", message: "Please enter trip name", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { _ in
+            })
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: {})
+            return
+        }
         self.delegate.tripAddedFromVC(self.tripTextField.text!)
         self.navigationController?.popViewControllerAnimated(true)
     }
