@@ -48,6 +48,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func addWayPoints(hasWaypoints: Bool) {
+        let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
+        self.navigationController?.pushViewController(addWaypointVC!, animated: true)
         if hasWaypoints {
             print("add more")
         }

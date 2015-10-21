@@ -321,6 +321,75 @@
             </objects>
             <point key="canvasLocation" x="1117" y="1072"/>
         </scene>
+        <!--Add Waypoint-->
+        <scene sceneID="0L5-mB-YR3">
+            <objects>
+                <viewController storyboardIdentifier="addWaypointVC" id="J6e-up-BLD" customClass="AddWaypointViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EZm-GA-ZaS"/>
+                        <viewControllerLayoutGuide type="bottom" id="SpU-xQ-TaE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="unT-MJ-h0H">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTu-F1-ob0">
+                                <rect key="frame" x="0.0" y="64" width="600" height="38"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-aQ-5Hn">
+                                        <rect key="frame" x="5" y="4" width="590" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Clh-Xh-d0c"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="0.90060478340000005" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="8mP-Lg-yn5"/>
+                                    <constraint firstItem="vDY-aQ-5Hn" firstAttribute="leading" secondItem="uTu-F1-ob0" secondAttribute="leading" constant="5" id="IZN-y7-vU6"/>
+                                    <constraint firstAttribute="trailing" secondItem="vDY-aQ-5Hn" secondAttribute="trailing" constant="5" id="OBL-zi-qRw"/>
+                                    <constraint firstItem="vDY-aQ-5Hn" firstAttribute="centerY" secondItem="uTu-F1-ob0" secondAttribute="centerY" id="Uj7-J1-frY"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wpl-bB-HDq">
+                                <rect key="frame" x="0.0" y="102" width="600" height="142"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="142" id="k4s-If-t2e"/>
+                                </constraints>
+                            </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-vl-9Mg">
+                                <rect key="frame" x="0.0" y="244" width="600" height="356"/>
+                                <animations/>
+                            </mapView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZzG-vl-9Mg" firstAttribute="top" secondItem="Wpl-bB-HDq" secondAttribute="bottom" id="5Vk-cW-Wgh"/>
+                            <constraint firstItem="ZzG-vl-9Mg" firstAttribute="leading" secondItem="unT-MJ-h0H" secondAttribute="leadingMargin" constant="-20" id="7Lx-Ui-P4y"/>
+                            <constraint firstItem="SpU-xQ-TaE" firstAttribute="top" secondItem="ZzG-vl-9Mg" secondAttribute="bottom" id="d5Y-0x-2ot"/>
+                            <constraint firstItem="Wpl-bB-HDq" firstAttribute="leading" secondItem="unT-MJ-h0H" secondAttribute="leadingMargin" constant="-20" id="dwJ-oT-qXY"/>
+                            <constraint firstItem="Wpl-bB-HDq" firstAttribute="top" secondItem="uTu-F1-ob0" secondAttribute="bottom" id="fzj-es-9eb"/>
+                            <constraint firstItem="uTu-F1-ob0" firstAttribute="leading" secondItem="unT-MJ-h0H" secondAttribute="leadingMargin" constant="-20" id="l96-qc-mVx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wpl-bB-HDq" secondAttribute="trailing" constant="-20" id="p9q-KB-dkY"/>
+                            <constraint firstItem="uTu-F1-ob0" firstAttribute="top" secondItem="EZm-GA-ZaS" secondAttribute="bottom" id="r6e-fa-dwn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uTu-F1-ob0" secondAttribute="trailing" constant="-20" id="tcc-3X-KBl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZzG-vl-9Mg" secondAttribute="trailing" constant="-20" id="u1G-hW-ftd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Waypoint" id="eDS-9u-66e"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QC6-vV-rXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="1072"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zv3-b3-TK0">
             <objects>
