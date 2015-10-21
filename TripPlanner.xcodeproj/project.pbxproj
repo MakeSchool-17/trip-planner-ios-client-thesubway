@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2720F6A41BD6C6F800F404E8 /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2720F6A61BD6D0BB00F404E8 /* MyTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2720F6A51BD6D0BB00F404E8 /* MyTripViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		2720F6A81BD80C5A00F404E8 /* CentreBlockParliamentHill.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2720F6A71BD80C5A00F404E8 /* CentreBlockParliamentHill.jpg */; settings = {ASSET_TAGS = (); }; };
 		2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA2C1BCC334A00676972 /* AppDelegate.swift */; };
 		2725EA2F1BCC334A00676972 /* PlannedTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */; };
 		2725EA321BCC334A00676972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2725EA301BCC334A00676972 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		2720F6A51BD6D0BB00F404E8 /* MyTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTripViewController.swift; sourceTree = "<group>"; };
+		2720F6A71BD80C5A00F404E8 /* CentreBlockParliamentHill.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CentreBlockParliamentHill.jpg; sourceTree = "<group>"; };
 		2725EA291BCC334A00676972 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2725EA2C1BCC334A00676972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedTripsViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		2725EA2B1BCC334A00676972 /* TripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				2720F6A71BD80C5A00F404E8 /* CentreBlockParliamentHill.jpg */,
 				2725EA2C1BCC334A00676972 /* AppDelegate.swift */,
 				2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */,
 				2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */,
@@ -239,6 +242,7 @@
 			files = (
 				2725EA3A1BCC334A00676972 /* LaunchScreen.storyboard in Resources */,
 				2725EA371BCC334A00676972 /* Assets.xcassets in Resources */,
+				2720F6A81BD80C5A00F404E8 /* CentreBlockParliamentHill.jpg in Resources */,
 				2725EA321BCC334A00676972 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
