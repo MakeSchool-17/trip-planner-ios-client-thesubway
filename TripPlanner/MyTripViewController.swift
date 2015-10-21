@@ -41,21 +41,25 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func getStartedPressed(sender: AnyObject) {
-        self.addWayPoints(false)
+        self.addWayPoints(nil)
     }
     @IBAction func addMorePressed(sender: AnyObject) {
-        self.addWayPoints(true)
+        self.addWayPoints(nil)
     }
     
-    func addWayPoints(hasWaypoints: Bool) {
+    func addWayPoints(clickedWaypoint: String!) {
         let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
         self.navigationController?.pushViewController(addWaypointVC!, animated: true)
-        if hasWaypoints {
-            print("add more")
+        if clickedWaypoint == nil {
+            print("search")
         }
         else {
-            print("get started!")
+            print("current waypoint")
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.addWayPoints(self.waypoints[indexPath.row])
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
