@@ -11,6 +11,10 @@ import UIKit
 class MyTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var hasWaypointsView: UIView!
+    @IBOutlet var tripImageView: UIImageView!
+    @IBOutlet var lblDestination: UILabel!
+    @IBOutlet var lblTravelDate: UILabel!
+    
     @IBOutlet var noWaypointsView: UIView!
     var waypoints = [String]()
     @IBOutlet var waypointTableView: UITableView!
@@ -34,6 +38,9 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func getStartedPressed(sender: AnyObject) {
         print("get started!")
+    }
+    @IBAction func addMorePressed(sender: AnyObject) {
+        print("add more")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

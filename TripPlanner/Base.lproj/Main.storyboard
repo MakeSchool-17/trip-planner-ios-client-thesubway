@@ -217,6 +217,9 @@
                                                             <constraint firstAttribute="height" constant="30" id="YjV-tA-DNJ"/>
                                                         </constraints>
                                                         <state key="normal" title="Add more waypoints"/>
+                                                        <connections>
+                                                            <action selector="addMorePressed:" destination="kGX-UD-JOe" eventType="touchUpInside" id="pck-Ub-nTR"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CentreBlockParliamentHill.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ddp-5s-uPf">
                                                         <rect key="frame" x="8" y="0.0" width="75" height="75"/>
@@ -299,7 +302,10 @@
                     </view>
                     <connections>
                         <outlet property="hasWaypointsView" destination="c5v-aI-LB2" id="vue-zg-vrZ"/>
+                        <outlet property="lblDestination" destination="Q6N-BD-Xf0" id="tdG-GQ-Y8h"/>
+                        <outlet property="lblTravelDate" destination="N4X-Wu-sDU" id="BWm-wH-zaG"/>
                         <outlet property="noWaypointsView" destination="Z2o-bx-jqI" id="h7k-dC-ZuB"/>
+                        <outlet property="tripImageView" destination="ddp-5s-uPf" id="ITj-6C-ssU"/>
                         <outlet property="waypointTableView" destination="aWC-2z-amC" id="sqi-qh-stZ"/>
                     </connections>
                 </viewController>
