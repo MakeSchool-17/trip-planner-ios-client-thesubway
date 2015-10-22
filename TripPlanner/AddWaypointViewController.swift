@@ -20,6 +20,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     
     @IBOutlet var mapView: MKMapView!
     var locationManager = CLLocationManager()
+    var userCoordinate : CLLocationCoordinate2D!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,6 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        print("search for \(searchBar.text!)")
         self.view.endEditing(true)
         
         if CLLocationManager.locationServicesEnabled() == false {
@@ -70,10 +70,26 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         
         //after user confirmation (authorized), then may update location
         self.locationManager.startUpdatingLocation()
+        //that should call locationManager's didUpdateLocations function.
         
         //in order to have current location, must have CLLocation.
         
         //before actually inputting the searchString, must have access to current region.
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation : CLLocation! = locations.last
+        self.userCoordinate = userLocation.coordinate
+        //after search, no longer need to update extra times.
+        manager.stopUpdatingLocation()
+        //ensure that didUpdateLocations no longer gets called:
+        manager.delegate = nil
+        self.startSearch(self.searchBar.text!)
+    }
+    
+    func startSearch(searchString: String) {
+        print("search for \(searchString)")
+        print("searching at: \(self.userCoordinate.latitude) latitude, \(self.userCoordinate.longitude) longitude")
     }
 
 }
