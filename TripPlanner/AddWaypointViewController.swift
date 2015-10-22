@@ -120,6 +120,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             self.localSearch = nil
         }
         self.localSearch = MKLocalSearch(request: request)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         self.localSearch.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
             if error != nil {
                 let errorStr : String = (error?.userInfo[NSLocalizedDescriptionKey] as? String)!
@@ -136,6 +137,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
                 print(self.places)
                 self.searchTableView.reloadData()
             }
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }
     }
     
@@ -146,6 +148,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell")
         let mapItem : MKMapItem = self.places[indexPath.row]
+        print(mapItem.placemark.description)
         cell?.textLabel?.text = mapItem.placemark.description
         return cell!
     }
