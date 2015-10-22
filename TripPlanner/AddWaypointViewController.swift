@@ -21,6 +21,9 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     @IBOutlet var mapView: MKMapView!
     var locationManager = CLLocationManager()
     var userCoordinate : CLLocationCoordinate2D!
+    var localSearch : MKLocalSearch!
+    var places : [MKMapItem]!
+    var boundingRegion : MKCoordinateRegion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +93,46 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     func startSearch(searchString: String) {
         print("search for \(searchString)")
         print("searching at: \(self.userCoordinate.latitude) latitude, \(self.userCoordinate.longitude) longitude")
+        
+        if self.localSearch != nil && self.localSearch?.searching == true {
+            self.localSearch!.cancel()
+        }
+        //use the user's current region
+        var newRegion = MKCoordinateRegion()
+        newRegion.center.latitude = self.userCoordinate.latitude
+        newRegion.center.longitude = self.userCoordinate.longitude
+        
+        //smaller delta values mean higher zoom level
+        newRegion.span.latitudeDelta = 0.112872
+        newRegion.span.longitudeDelta = 0.109863
+        
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = searchString
+        request.region = newRegion
+        
+        //completion handler
+        
+        if self.localSearch != nil {
+            self.localSearch = nil
+        }
+        self.localSearch = MKLocalSearch(request: request)
+        self.localSearch.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
+            if error != nil {
+                let errorStr : String = (error?.userInfo[NSLocalizedDescriptionKey] as? String)!
+                let alert = UIAlertController(title: "Could not find places", message: errorStr, preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { _ in
+                })
+                alert.addAction(okAction)
+                self.presentViewController(alert, animated: true, completion: {})
+            }
+            else {
+                self.places = response!.mapItems
+                self.boundingRegion = response?.boundingRegion
+                print("num places: \(self.places.count)")
+                print(self.places)
+                self.searchTableView.reloadData()
+            }
+        }
     }
 
 }
