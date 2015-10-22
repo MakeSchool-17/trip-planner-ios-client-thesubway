@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate {
+class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var searchTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
@@ -22,13 +22,15 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     var locationManager = CLLocationManager()
     var userCoordinate : CLLocationCoordinate2D!
     var localSearch : MKLocalSearch!
-    var places : [MKMapItem]!
+    var places = [MKMapItem]()
     var boundingRegion : MKCoordinateRegion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.delegate = self
         self.mapView.delegate = self
+        self.searchTableView.delegate = self
+        self.searchTableView.dataSource = self
         if self.currentWaypoint != nil {
             self.searchTableView.hidden = true
             self.waypointView.hidden = false
@@ -93,6 +95,8 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     func startSearch(searchString: String) {
         print("search for \(searchString)")
         print("searching at: \(self.userCoordinate.latitude) latitude, \(self.userCoordinate.longitude) longitude")
+        self.searchTableView.hidden = false
+        self.waypointView.hidden = true
         
         if self.localSearch != nil && self.localSearch?.searching == true {
             self.localSearch!.cancel()
@@ -133,6 +137,17 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
                 self.searchTableView.reloadData()
             }
         }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.places.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("searchCell")
+        let mapItem : MKMapItem = self.places[indexPath.row]
+        cell?.textLabel?.text = mapItem.placemark.description
+        return cell!
     }
 
 }
