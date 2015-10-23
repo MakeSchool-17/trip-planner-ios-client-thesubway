@@ -141,6 +141,12 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let mapItem : MKMapItem = self.places[indexPath.row]
+        //open using Maps app:
+        mapItem.openInMapsWithLaunchOptions(nil)
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.places.count
     }
@@ -148,7 +154,8 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell")
         let mapItem : MKMapItem = self.places[indexPath.row]
-        print(mapItem.placemark.description)
+        print("description: \(mapItem.placemark.description)")
+        print("name: \(mapItem.name!)")
         cell?.textLabel?.text = mapItem.placemark.description
         return cell!
     }
