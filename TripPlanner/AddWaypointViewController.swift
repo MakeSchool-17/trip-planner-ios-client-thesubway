@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+/*
+  TODO: This VC is implementing a lot of protocols! This likely will lead to too much code inside
+  of this VC. Try to move some functionality (e.g. location service) into separate views and business logic classes
+*/
 class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var searchTableView: UITableView!
@@ -119,6 +123,9 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         if self.localSearch != nil {
             self.localSearch = nil
         }
+        /* TODO: You should be using the Google API instead of the local search, if that's just 
+           a temporary workaround that's totally fine :)
+        */
         self.localSearch = MKLocalSearch(request: request)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         self.localSearch.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in

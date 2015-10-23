@@ -14,6 +14,7 @@ protocol AddTripVCDelegate {
 
 class AddTripViewController: UIViewController {
 
+    /* TODO: Delegate is a good idea! Add indirection by defining a protocol. */
     var delegate : AddTripVCDelegate!
     @IBOutlet var tripTextField: UITextField!
     

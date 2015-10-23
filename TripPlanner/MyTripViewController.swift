@@ -18,6 +18,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     var tripTravelDate = ""
     
     @IBOutlet var noWaypointsView: UIView!
+    // TODO: waypoints: [String] = [] would be more typical for swift
     var waypoints = [String]()
     @IBOutlet var waypointTableView: UITableView!
     
@@ -29,6 +30,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         else {
             self.view.bringSubviewToFront(self.hasWaypointsView)
         }
+        // TODO: duplicate line
         self.waypointTableView.delegate = self
         self.waypointTableView.dataSource = self
         self.lblDestination.text = self.tripDestination
@@ -46,7 +48,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func addMorePressed(sender: AnyObject) {
         self.addWayPoints(nil)
     }
-    
+  
+    // TODO: I would call this `tapped` waypoint
     func addWayPoints(clickedWaypoint: String!) {
         let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
         if clickedWaypoint != nil {
