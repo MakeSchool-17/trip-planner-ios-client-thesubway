@@ -118,6 +118,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         request.naturalLanguageQuery = searchString
         request.region = newRegion
         
+        self.mapView.setRegion(newRegion, animated: true)
         //completion handler
         
         if self.localSearch != nil {
