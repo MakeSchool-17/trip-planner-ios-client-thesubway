@@ -19,16 +19,18 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var noWaypointsView: UIView!
     // TODO: waypoints: [String] = [] would be more typical for swift
-    var waypoints = [String]()
+    var waypoints: [String] = []
     @IBOutlet var waypointTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.waypoints.count == 0 {
-            self.view.bringSubviewToFront(self.noWaypointsView)
+            self.noWaypointsView.hidden = false
+            self.hasWaypointsView.hidden = true
         }
         else {
-            self.view.bringSubviewToFront(self.hasWaypointsView)
+            self.noWaypointsView.hidden = true
+            self.hasWaypointsView.hidden = false
         }
         // TODO: duplicate line
         self.waypointTableView.delegate = self
@@ -50,10 +52,10 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
   
     // TODO: I would call this `tapped` waypoint
-    func addWayPoints(clickedWaypoint: String!) {
+    func addWayPoints(tappedWaypoint: String!) {
         let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
-        if clickedWaypoint != nil {
-            addWaypointVC?.currentWaypoint = clickedWaypoint
+        if tappedWaypoint != nil {
+            addWaypointVC?.currentWaypoint = tappedWaypoint
         }
         self.navigationController?.pushViewController(addWaypointVC!, animated: true)
     }
