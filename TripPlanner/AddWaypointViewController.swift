@@ -137,6 +137,13 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
                 switch httpResponse.statusCode {
                 case 200:
                     print("everything is awesome!")
+                    do {
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+                        print(json)
+                    }
+                    catch {
+                        print(error)
+                    }
                 case 404:
                     print("not found")
                 default:
