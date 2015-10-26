@@ -127,7 +127,12 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         /* TODO: You should be using the Google API instead of the local search, if that's just 
            a temporary workaround that's totally fine :)
         */
-        self.localSearch = MKLocalSearch(request: request)
+        //start with an NSURLSession:
+        //server key: AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk
+        let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk")
+        let urlRequest = NSURLRequest(URL: url!)
+        
+        /*self.localSearch = MKLocalSearch(request: request)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         self.localSearch.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
             if error != nil {
@@ -146,7 +151,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
                 self.searchTableView.reloadData()
             }
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        }
+        }*/
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
