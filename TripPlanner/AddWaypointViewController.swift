@@ -131,6 +131,20 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         //server key: AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk
         let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk")
         let urlRequest = NSURLRequest(URL: url!)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) { (data : NSData?, response : NSURLResponse?, error : NSError?) -> Void in
+            if let httpResponse = response as? NSHTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 200:
+                    print("everything is awesome!")
+                case 404:
+                    print("not found")
+                default:
+                    print("error \(httpResponse.statusCode)")
+                }
+            }
+        }
+        task.resume()
         
         /*self.localSearch = MKLocalSearch(request: request)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
