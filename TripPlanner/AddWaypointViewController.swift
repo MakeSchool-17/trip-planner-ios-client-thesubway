@@ -178,9 +178,13 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let mapItem : NSDictionary = self.places[indexPath.row]
         print(mapItem["vicinity"]!)
-        self.getDetails(mapItem["place_id"] as! String)
-        //open using Maps app:
-//        mapItem.openInMapsWithLaunchOptions(nil)
+        let geoDict = mapItem["geometry"] as! NSDictionary
+        let location : NSDictionary = geoDict["location"] as! NSDictionary
+        let mapCoordinate = CLLocationCoordinate2D(latitude: location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue)
+        let annotationDelegate : AnnotationDelegate = AnnotationDelegate(coordinate: mapCoordinate)
+        self.mapView.addAnnotation(annotationDelegate)
+
+        //self.getDetails(mapItem["place_id"] as! String)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -192,6 +196,19 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         let mapItem : NSDictionary = self.places[indexPath.row]
         cell?.textLabel?.text = mapItem["vicinity"] as? String
         return cell!
+    }
+
+}
+
+class AnnotationDelegate : NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+        self.title = ""
+        self.subtitle = ""
     }
 
 }
