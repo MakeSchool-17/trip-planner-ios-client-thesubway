@@ -163,9 +163,22 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         }*/
     }
     
+    func getDetails(placeId : String) {
+        let networkController = NetworkController()
+        networkController.fetchDetailsOfPlace(placeId) { (details : NSDictionary, errorDescription : String?) -> Void in
+            if errorDescription == nil {
+                print("details: \(details)")
+            }
+            else {
+                print(errorDescription)
+            }
+        }
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let mapItem : NSDictionary = self.places[indexPath.row]
         print(mapItem["vicinity"]!)
+        self.getDetails(mapItem["place_id"] as! String)
         //open using Maps app:
 //        mapItem.openInMapsWithLaunchOptions(nil)
     }
