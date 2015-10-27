@@ -26,7 +26,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     var locationManager = CLLocationManager()
     var userCoordinate : CLLocationCoordinate2D!
     var localSearch : MKLocalSearch!
-    var places = [MKMapItem]()
+    var places = [NSDictionary]()
     var boundingRegion : MKCoordinateRegion!
     
     override func viewDidLoad() {
@@ -138,8 +138,14 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
                 case 200:
                     print("everything is awesome!")
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
-                        print(json)
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        let results : [NSDictionary] = json["results"] as! [NSDictionary]
+                        self.places = results
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.searchTableView.reloadData()
+                        })
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+//                        print(results)
                     }
                     catch {
                         print(error)
@@ -151,6 +157,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
                 }
             }
         }
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         task.resume()
         
         /*self.localSearch = MKLocalSearch(request: request)
@@ -176,9 +183,10 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let mapItem : MKMapItem = self.places[indexPath.row]
+        let mapItem : NSDictionary = self.places[indexPath.row]
+        print(mapItem["vicinity"]!)
         //open using Maps app:
-        mapItem.openInMapsWithLaunchOptions(nil)
+//        mapItem.openInMapsWithLaunchOptions(nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -187,10 +195,8 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell")
-        let mapItem : MKMapItem = self.places[indexPath.row]
-        print("description: \(mapItem.placemark.description)")
-        print("name: \(mapItem.name!)")
-        cell?.textLabel?.text = mapItem.placemark.description
+        let mapItem : NSDictionary = self.places[indexPath.row]
+        cell?.textLabel?.text = mapItem["vicinity"] as? String
         return cell!
     }
 
