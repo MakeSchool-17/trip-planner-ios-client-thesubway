@@ -128,37 +128,18 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
            a temporary workaround that's totally fine :)
         */
         //start with an NSURLSession:
-        let serverKey = "AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk"
-        let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(self.userCoordinate.latitude),\(self.userCoordinate.longitude)&radius=500&types=food&name=\(searchString)&key=\(serverKey)")
-        let urlRequest = NSURLRequest(URL: url!)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) { (data : NSData?, response : NSURLResponse?, error : NSError?) -> Void in
-            if let httpResponse = response as? NSHTTPURLResponse {
-                switch httpResponse.statusCode {
-                case 200:
-                    print("everything is awesome!")
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
-                        let results : [NSDictionary] = json["results"] as! [NSDictionary]
-                        self.places = results
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.searchTableView.reloadData()
-                        })
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//                        print(results)
-                    }
-                    catch {
-                        print(error)
-                    }
-                case 404:
-                    print("not found")
-                default:
-                    print("error \(httpResponse.statusCode)")
-                }
+        let networkController = NetworkController()
+        networkController.fetchPlaces(searchString, userCoordinate: self.userCoordinate) { (places : [NSDictionary]?, errorDescription : String?) -> Void in
+            if errorDescription == nil {
+                self.places = places!
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.searchTableView.reloadData()
+                })
+            }
+            else {
+                print(errorDescription)
             }
         }
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        task.resume()
         
         /*self.localSearch = MKLocalSearch(request: request)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
