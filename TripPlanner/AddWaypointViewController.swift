@@ -128,8 +128,8 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
            a temporary workaround that's totally fine :)
         */
         //start with an NSURLSession:
-        //server key: AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk
-        let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk")
+        let serverKey = "AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk"
+        let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(self.userCoordinate.latitude),\(self.userCoordinate.longitude)&radius=500&types=food&name=\(searchString)&key=\(serverKey)")
         let urlRequest = NSURLRequest(URL: url!)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) { (data : NSData?, response : NSURLResponse?, error : NSError?) -> Void in
