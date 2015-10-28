@@ -188,8 +188,12 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("tapped")
-        self.mapView.removeAnnotation(view.annotation!)
+        if control == view.rightCalloutAccessoryView {
+            print("tapped")
+            let annotation : AnnotationDelegate = view.annotation as! AnnotationDelegate
+            print(annotation.mapItem!["geometry"])
+        }
+//        self.mapView.removeAnnotation(view.annotation!)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -198,14 +202,17 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         let geoDict = mapItem["geometry"] as! NSDictionary
         let location : NSDictionary = geoDict["location"] as! NSDictionary
         let itemName : String = mapItem["name"] as! String
-        self.dropPin(location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue, title: itemName)
+        self.dropPin(location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue, title: itemName, mapItem: mapItem)
 
         //self.getDetails(mapItem["place_id"] as! String)
     }
     
-    func dropPin(latitude : Double, longitude : Double, title : String?) {
+    func dropPin(latitude : Double, longitude : Double, title : String?, mapItem : NSDictionary?) {
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        //might need to get rid of method, to pass in other data
         let mapCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let annotationDelegate : AnnotationDelegate = AnnotationDelegate(coordinate: mapCoordinate, title: title)
+        annotationDelegate.mapItem = mapItem
         self.mapView.addAnnotation(annotationDelegate)
     }
     
@@ -226,6 +233,7 @@ class AnnotationDelegate : NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var mapItem : NSDictionary?
     
     init(coordinate: CLLocationCoordinate2D, title: String?) {
         self.coordinate = coordinate
