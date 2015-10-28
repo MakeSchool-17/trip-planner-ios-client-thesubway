@@ -43,9 +43,6 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
           instantiating the VC programatically though :) */
         // TODO: Consider choosing a different name than `myTripVC`
         let myTripVC = self.storyboard?.instantiateViewControllerWithIdentifier("myTripVC") as! MyTripViewController
-        for (var i = 0; i < indexPath.row; i++) {
-            myTripVC.waypoints.append("Waypoint \(i)")
-        }
         /* TODO: Here it would be better to use a View Object (covered in this lecture: https://www.makeschool.com/academy/tutorial/ios-development-class/intro-to-ios-app-architecture).
           I would recommend passing the entire trip to the tripVC, then the tripVC itself can extract
           the date and destination from the trip.

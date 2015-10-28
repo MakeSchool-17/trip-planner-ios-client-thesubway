@@ -15,7 +15,7 @@ import MapKit
 */
 
 protocol AddWaypointVCDelegate {
-    func waypointAddedFromVC(dict : NSDictionary?)
+    func waypointAddedFromVC(dict : NSDictionary)
 }
 
 class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -24,7 +24,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     @IBOutlet var searchBar: UISearchBar!
     
     @IBOutlet var waypointView: UIView!
-    var currentWaypoint : String!
+    var currentWaypoint : NSDictionary!
     @IBOutlet var lblWaypoint: UILabel!
     var delegate : AddWaypointVCDelegate?
     
@@ -44,7 +44,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         if self.currentWaypoint != nil {
             self.searchTableView.hidden = true
             self.waypointView.hidden = false
-            self.lblWaypoint.text = currentWaypoint
+            self.lblWaypoint.text = currentWaypoint["name"] as? String
         }
         else {
             self.searchTableView.hidden = false
@@ -107,7 +107,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         //ensure that didUpdateLocations no longer gets called:
         manager.delegate = nil
         
-        //use the user's current region
+        //if no waypoint, then use the user's current region
         self.currentRegion = MKCoordinateRegion()
         self.currentRegion.center.latitude = self.userCoordinate.latitude
         self.currentRegion.center.longitude = self.userCoordinate.longitude
@@ -202,7 +202,8 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             let annotation : AnnotationDelegate = view.annotation as! AnnotationDelegate
             let alert = UIAlertController(title: "", message: "Would you like to add \(annotation.title!) as a waypoint?", preferredStyle: UIAlertControllerStyle.Alert)
             let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { _ in
-                self.delegate?.waypointAddedFromVC(annotation.mapItem)
+                let result = annotation.mapItem!
+                self.delegate?.waypointAddedFromVC(result)
                 self.navigationController?.popViewControllerAnimated(true)
             })
             let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: { _ in

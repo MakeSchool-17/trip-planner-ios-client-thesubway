@@ -19,7 +19,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var noWaypointsView: UIView!
     // TODO: waypoints: [String] = [] would be more typical for swift
-    var waypoints: [String] = []
+    var waypoints: [NSDictionary] = []
     @IBOutlet var waypointTableView: UITableView!
     
     override func viewDidLoad() {
@@ -56,12 +56,13 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         self.addWayPoints(nil)
     }
     
-    func waypointAddedFromVC(dict: NSDictionary?) {
-        self.waypoints.append(dict!["name"] as! String)
+    func waypointAddedFromVC(dict: NSDictionary) {
+        print(dict)
+        self.waypoints.append(dict)
     }
   
     // TODO: I would call this `tapped` waypoint
-    func addWayPoints(tappedWaypoint: String!) {
+    func addWayPoints(tappedWaypoint: NSDictionary!) {
         let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
         addWaypointVC?.delegate = self
         if tappedWaypoint != nil {
@@ -71,7 +72,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let waypoint : String = self.waypoints[indexPath.row]
+        let waypoint : NSDictionary = self.waypoints[indexPath.row] as NSDictionary
         self.addWayPoints(waypoint)
     }
     
@@ -81,7 +82,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("waypointCell")
-        cell?.textLabel?.text = waypoints[indexPath.row]
+        let waypoint : NSDictionary = waypoints[indexPath.row]
+        cell?.textLabel?.text = waypoint["name"] as? String
         return cell!
     }
 
