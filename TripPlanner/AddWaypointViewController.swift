@@ -13,6 +13,11 @@ import MapKit
   TODO: This VC is implementing a lot of protocols! This likely will lead to too much code inside
   of this VC. Try to move some functionality (e.g. location service) into separate views and business logic classes
 */
+
+protocol AddWaypointVCDelegate {
+    func waypointAddedFromVC(dict : NSDictionary?)
+}
+
 class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var searchTableView: UITableView!
@@ -21,6 +26,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     @IBOutlet var waypointView: UIView!
     var currentWaypoint : String!
     @IBOutlet var lblWaypoint: UILabel!
+    var delegate : AddWaypointVCDelegate?
     
     @IBOutlet var mapView: MKMapView!
     var locationManager = CLLocationManager()
@@ -193,10 +199,10 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             let annotation : AnnotationDelegate = view.annotation as! AnnotationDelegate
             let alert = UIAlertController(title: "", message: "Would you like to add \(annotation.title!) as a waypoint?", preferredStyle: UIAlertControllerStyle.Alert)
             let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { _ in
-                print("yes add")
+                self.delegate?.waypointAddedFromVC(annotation.mapItem)
+                self.navigationController?.popViewControllerAnimated(true)
             })
             let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: { _ in
-                print("don't add")
             })
             alert.addAction(yesAction)
             alert.addAction(noAction)

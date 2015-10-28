@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MyTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddWaypointVCDelegate {
 
     @IBOutlet var hasWaypointsView: UIView!
     @IBOutlet var tripImageView: UIImageView!
@@ -24,6 +24,10 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         if self.waypoints.count == 0 {
             self.noWaypointsView.hidden = false
             self.hasWaypointsView.hidden = true
@@ -37,6 +41,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         self.waypointTableView.dataSource = self
         self.lblDestination.text = self.tripDestination
         self.lblTravelDate.text = self.tripTravelDate
+        self.waypointTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,10 +55,15 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func addMorePressed(sender: AnyObject) {
         self.addWayPoints(nil)
     }
+    
+    func waypointAddedFromVC(dict: NSDictionary?) {
+        self.waypoints.append(dict!["name"] as! String)
+    }
   
     // TODO: I would call this `tapped` waypoint
     func addWayPoints(tappedWaypoint: String!) {
         let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
+        addWaypointVC?.delegate = self
         if tappedWaypoint != nil {
             addWaypointVC?.currentWaypoint = tappedWaypoint
         }
