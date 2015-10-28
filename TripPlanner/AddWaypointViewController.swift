@@ -33,7 +33,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     var userCoordinate : CLLocationCoordinate2D!
     var localSearch : MKLocalSearch!
     var places = [NSDictionary]()
-    var boundingRegion : MKCoordinateRegion!
+    var currentRegion : MKCoordinateRegion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,14 +51,9 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             self.waypointView.hidden = true
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        self.view.endEditing(true)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         if CLLocationManager.locationServicesEnabled() == false {
             print("location services disabled")
@@ -85,6 +80,18 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         
         //after user confirmation (authorized), then may update location
         self.locationManager.startUpdatingLocation()
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        
+        self.startSearch(self.searchBar.text!)
         //that should call locationManager's didUpdateLocations function.
         
         //in order to have current location, must have CLLocation.
@@ -99,37 +106,33 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         manager.stopUpdatingLocation()
         //ensure that didUpdateLocations no longer gets called:
         manager.delegate = nil
-        self.startSearch(self.searchBar.text!)
+        
+        //use the user's current region
+        self.currentRegion = MKCoordinateRegion()
+        self.currentRegion.center.latitude = self.userCoordinate.latitude
+        self.currentRegion.center.longitude = self.userCoordinate.longitude
+        
+        //smaller delta values mean higher zoom level
+        self.currentRegion.span.latitudeDelta = 0.112872
+        self.currentRegion.span.longitudeDelta = 0.109863
+        
+        self.mapView.setRegion(self.currentRegion, animated: true)
     }
     
     func startSearch(searchString: String) {
-        print("search for \(searchString)")
-        print("searching at: \(self.userCoordinate.latitude) latitude, \(self.userCoordinate.longitude) longitude")
         self.searchTableView.hidden = false
         self.waypointView.hidden = true
         
         if self.localSearch != nil && self.localSearch?.searching == true {
             self.localSearch!.cancel()
         }
-        //use the user's current region
-        var newRegion = MKCoordinateRegion()
-        newRegion.center.latitude = self.userCoordinate.latitude
-        newRegion.center.longitude = self.userCoordinate.longitude
-        
-        //smaller delta values mean higher zoom level
-        newRegion.span.latitudeDelta = 0.112872
-        newRegion.span.longitudeDelta = 0.109863
-        
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchString
-        request.region = newRegion
-        
-        self.mapView.setRegion(newRegion, animated: true)
-        //completion handler
         
         if self.localSearch != nil {
             self.localSearch = nil
         }
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = searchString
+        request.region = self.currentRegion
         /* TODO: You should be using the Google API instead of the local search, if that's just 
            a temporary workaround that's totally fine :)
         */
