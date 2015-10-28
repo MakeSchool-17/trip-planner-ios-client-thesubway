@@ -57,7 +57,6 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func waypointAddedFromVC(dict: NSDictionary) {
-        print(dict)
         self.waypoints.append(dict)
     }
   

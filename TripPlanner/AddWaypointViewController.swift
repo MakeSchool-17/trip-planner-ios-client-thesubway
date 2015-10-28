@@ -90,13 +90,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         self.view.endEditing(true)
-        
         self.startSearch(self.searchBar.text!)
-        //that should call locationManager's didUpdateLocations function.
-        
-        //in order to have current location, must have CLLocation.
-        
-        //before actually inputting the searchString, must have access to current region.
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -109,8 +103,18 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         
         //if no waypoint, then use the user's current region
         self.currentRegion = MKCoordinateRegion()
-        self.currentRegion.center.latitude = self.userCoordinate.latitude
-        self.currentRegion.center.longitude = self.userCoordinate.longitude
+        if self.currentWaypoint != nil {
+            let geometry = self.currentWaypoint["geometry"] as! NSDictionary
+            let location = geometry["location"] as! NSDictionary
+            self.currentRegion.center.latitude = location["lat"]!.doubleValue
+            self.currentRegion.center.longitude = location["lng"]!.doubleValue
+        }
+        else {
+            self.currentRegion.center.latitude = self.userCoordinate.latitude
+            self.currentRegion.center.longitude = self.userCoordinate.longitude
+        }
+        print(self.currentRegion.center.latitude)
+        print(self.currentRegion.center.longitude)
         
         //smaller delta values mean higher zoom level
         self.currentRegion.span.latitudeDelta = 0.112872
@@ -166,8 +170,6 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             else {
                 self.places = response!.mapItems
                 self.boundingRegion = response?.boundingRegion
-                print("num places: \(self.places.count)")
-                print(self.places)
                 self.searchTableView.reloadData()
             }
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -211,7 +213,6 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             alert.addAction(yesAction)
             alert.addAction(noAction)
             self.presentViewController(alert, animated: true, completion: {})
-//            print(annotation.mapItem!["geometry"])
             //add alert
         }
     }
