@@ -133,6 +133,8 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             if errorDescription == nil {
                 self.places = places!
                 dispatch_async(dispatch_get_main_queue(), {
+                    //clear previously-existing pins:
+                    self.mapView.removeAnnotations(self.mapView.annotations)
                     self.searchTableView.reloadData()
                 })
             }
@@ -187,6 +189,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("tapped")
+        self.mapView.removeAnnotation(view.annotation!)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
