@@ -180,11 +180,16 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         print(mapItem["vicinity"]!)
         let geoDict = mapItem["geometry"] as! NSDictionary
         let location : NSDictionary = geoDict["location"] as! NSDictionary
-        let mapCoordinate = CLLocationCoordinate2D(latitude: location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue)
-        let annotationDelegate : AnnotationDelegate = AnnotationDelegate(coordinate: mapCoordinate)
-        self.mapView.addAnnotation(annotationDelegate)
+        
+        self.dropPin(location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue)
 
         //self.getDetails(mapItem["place_id"] as! String)
+    }
+    
+    func dropPin(latitude : Double, longitude : Double) {
+        let mapCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let annotationDelegate : AnnotationDelegate = AnnotationDelegate(coordinate: mapCoordinate)
+        self.mapView.addAnnotation(annotationDelegate)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
