@@ -106,8 +106,12 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         if self.currentWaypoint != nil {
             let geometry = self.currentWaypoint["geometry"] as! NSDictionary
             let location = geometry["location"] as! NSDictionary
-            self.currentRegion.center.latitude = location["lat"]!.doubleValue
-            self.currentRegion.center.longitude = location["lng"]!.doubleValue
+            let wayLat = location["lat"]!.doubleValue
+            let wayLong = location["lng"]!.doubleValue
+            self.currentRegion.center.latitude = wayLat
+            self.currentRegion.center.longitude = wayLong
+            let wayName = self.currentWaypoint["name"] as! String
+            self.dropPin(wayLat, longitude: wayLong, title: wayName, mapItem: self.currentWaypoint, isWaypoint: true)
         }
         else {
             self.currentRegion.center.latitude = self.userCoordinate.latitude
@@ -192,9 +196,17 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         if annotation.isKindOfClass(MKUserLocation) {
             return nil
         }
-        let annotationView : MKAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "loc")
+        let annotationView : MKPinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "loc")
         annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
+        annotationView.rightCalloutAccessoryView = UIButton(type: UIButtonType.ContactAdd)
+        
+        let annotationDelegate = annotation as! AnnotationDelegate
+        if annotationDelegate.isWaypoint == true {
+            annotationView.pinTintColor = UIColor.greenColor()
+        }
+        else {
+            annotationView.pinTintColor = UIColor.redColor()
+        }
         return annotationView
     }
     
@@ -223,16 +235,17 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         let geoDict = mapItem["geometry"] as! NSDictionary
         let location : NSDictionary = geoDict["location"] as! NSDictionary
         let itemName : String = mapItem["name"] as! String
-        self.dropPin(location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue, title: itemName, mapItem: mapItem)
+        self.dropPin(location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue, title: itemName, mapItem: mapItem, isWaypoint: false)
 
         //self.getDetails(mapItem["place_id"] as! String)
     }
     
-    func dropPin(latitude : Double, longitude : Double, title : String?, mapItem : NSDictionary?) {
+    func dropPin(latitude : Double, longitude : Double, title : String?, mapItem : NSDictionary?, isWaypoint : Bool) {
         self.mapView.removeAnnotations(self.mapView.annotations)
         //might need to get rid of method, to pass in other data
         let mapCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let annotationDelegate : AnnotationDelegate = AnnotationDelegate(coordinate: mapCoordinate, title: title)
+        annotationDelegate.isWaypoint = isWaypoint
         annotationDelegate.mapItem = mapItem
         self.mapView.addAnnotation(annotationDelegate)
     }
@@ -255,6 +268,7 @@ class AnnotationDelegate : NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var mapItem : NSDictionary?
+    var isWaypoint = false
     
     init(coordinate: CLLocationCoordinate2D, title: String?) {
         self.coordinate = coordinate
