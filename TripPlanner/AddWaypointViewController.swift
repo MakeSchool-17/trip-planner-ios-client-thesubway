@@ -191,9 +191,19 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         if control == view.rightCalloutAccessoryView {
             print("tapped")
             let annotation : AnnotationDelegate = view.annotation as! AnnotationDelegate
-            print(annotation.mapItem!["geometry"])
+            let alert = UIAlertController(title: "", message: "Would you like to add \(annotation.title!) as a waypoint?", preferredStyle: UIAlertControllerStyle.Alert)
+            let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { _ in
+                print("yes add")
+            })
+            let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: { _ in
+                print("don't add")
+            })
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            self.presentViewController(alert, animated: true, completion: {})
+//            print(annotation.mapItem!["geometry"])
+            //add alert
         }
-//        self.mapView.removeAnnotation(view.annotation!)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
