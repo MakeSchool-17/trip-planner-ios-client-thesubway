@@ -175,20 +175,34 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         }
     }
     
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation.isKindOfClass(MKUserLocation) {
+            return nil
+        }
+        let annotationView : MKAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "loc")
+        annotationView.canShowCallout = true
+        annotationView.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
+        return annotationView
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("tapped")
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let mapItem : NSDictionary = self.places[indexPath.row]
         print(mapItem["vicinity"]!)
         let geoDict = mapItem["geometry"] as! NSDictionary
         let location : NSDictionary = geoDict["location"] as! NSDictionary
-        
-        self.dropPin(location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue)
+        let itemName : String = mapItem["name"] as! String
+        self.dropPin(location["lat"]!.doubleValue, longitude: location["lng"]!.doubleValue, title: itemName)
 
         //self.getDetails(mapItem["place_id"] as! String)
     }
     
-    func dropPin(latitude : Double, longitude : Double) {
+    func dropPin(latitude : Double, longitude : Double, title : String?) {
         let mapCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let annotationDelegate : AnnotationDelegate = AnnotationDelegate(coordinate: mapCoordinate)
+        let annotationDelegate : AnnotationDelegate = AnnotationDelegate(coordinate: mapCoordinate, title: title)
         self.mapView.addAnnotation(annotationDelegate)
     }
     
@@ -210,9 +224,14 @@ class AnnotationDelegate : NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     
-    init(coordinate: CLLocationCoordinate2D) {
+    init(coordinate: CLLocationCoordinate2D, title: String?) {
         self.coordinate = coordinate
-        self.title = ""
+        if let pinTitle = title {
+            self.title = pinTitle
+        }
+        else {
+            self.title = "No name"
+        }
         self.subtitle = ""
     }
 
