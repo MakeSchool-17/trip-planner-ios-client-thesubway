@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddTripVCDelegate {
-    func tripAddedFromVC(tripName : String)
+    func tripAddedFromVC(vc : AddTripViewController, tripName : String)
 }
 
 class AddTripViewController: UIViewController {
@@ -39,7 +39,7 @@ class AddTripViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: {})
             return
         }
-        self.delegate.tripAddedFromVC(self.tripTextField.text!)
+        self.delegate.tripAddedFromVC(self, tripName: self.tripTextField.text!)
         self.navigationController?.popViewControllerAnimated(true)
     }
 

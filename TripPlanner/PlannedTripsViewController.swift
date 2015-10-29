@@ -61,7 +61,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
   
     /* TODO: It would be prefarable to communicate via a protocol instead of having this method being
        called directly */
-    func tripAddedFromVC(tripName: String) {
+    func tripAddedFromVC(vc: AddTripViewController, tripName: String) {
         self.coreDataAdd(tripName, key: "name", entity: "Trip")
         self.coreDataGet("Trip")
         self.tableView.reloadData()
