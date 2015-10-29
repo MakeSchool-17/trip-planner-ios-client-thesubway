@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddTripVCDelegate {
 
@@ -61,8 +62,37 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     /* TODO: It would be prefarable to communicate via a protocol instead of having this method being
        called directly */
     func tripAddedFromVC(tripName: String) {
-        self.trips.append(tripName)
+        self.coreDataAdd(tripName, key: "name", entity: "Trip")
+        self.coreDataGet("Trip")
         self.tableView.reloadData()
+    }
+    func coreDataAdd(value : String, key : String, entity : String) {
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        let newTrip = NSEntityDescription.insertNewObjectForEntityForName("Trip", inManagedObjectContext: context)
+        newTrip.setValue(value, forKey: key)
+        self.trips.append(value)
+        do {
+            try context.save()
+            print("saved")
+        } catch {
+            print("could not save")
+        }
+    }
+    func coreDataGet(entity : String) {
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest(entityName: entity)
+        request.returnsObjectsAsFaults = false
+        var results : [AnyObject]?
+        do {
+            results = try context.executeFetchRequest(request)
+            print(results)
+        }
+        catch {
+            print("could not fetch")
+            return
+        }
     }
 }
 
