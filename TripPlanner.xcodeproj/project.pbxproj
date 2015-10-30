@@ -20,6 +20,7 @@
 		2725EA451BCC334B00676972 /* TripPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA441BCC334B00676972 /* TripPlannerTests.swift */; };
 		2725EA501BCC334B00676972 /* TripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA4F1BCC334B00676972 /* TripPlannerUITests.swift */; };
 		27A318381BDF081D0003BFBC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A318371BDF081D0003BFBC /* NetworkController.swift */; };
+		27A3183C1BE3F2B30003BFBC /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		2725EA4F1BCC334B00676972 /* TripPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerUITests.swift; sourceTree = "<group>"; };
 		2725EA511BCC334B00676972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A318371BDF081D0003BFBC /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				2720F6A51BD6D0BB00F404E8 /* MyTripViewController.swift */,
 				2720F6A91BD82E9D00F404E8 /* AddWaypointViewController.swift */,
 				27A318371BDF081D0003BFBC /* NetworkController.swift */,
+				27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */,
 				2725EA301BCC334A00676972 /* Main.storyboard */,
 				2725EA361BCC334A00676972 /* Assets.xcassets */,
 				2725EA381BCC334A00676972 /* LaunchScreen.storyboard */,
@@ -280,6 +283,7 @@
 				2725EA351BCC334A00676972 /* TripPlanner.xcdatamodeld in Sources */,
 				2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */,
 				27A318381BDF081D0003BFBC /* NetworkController.swift in Sources */,
+				27A3183C1BE3F2B30003BFBC /* CoreDataUtil.swift in Sources */,
 				2720F6AA1BD82E9D00F404E8 /* AddWaypointViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

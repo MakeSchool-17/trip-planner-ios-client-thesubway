@@ -37,8 +37,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
             self.hasWaypointsView.hidden = false
         }
         // TODO: duplicate line
-        self.waypointTableView.delegate = self
-        self.waypointTableView.dataSource = self
+        waypointTableView.delegate = self
+        waypointTableView.dataSource = self
         self.lblDestination.text = self.tripDestination
         self.lblTravelDate.text = self.tripTravelDate
         self.waypointTableView.reloadData()
