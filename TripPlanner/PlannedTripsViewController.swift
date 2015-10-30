@@ -20,6 +20,10 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         trips.append("Trip to Stuttgart")
         trips.append("Trip to Moscow")
         trips.append("Trip to Brasilia")
+        let cdTrips = CoreDataUtil.coreDataGet("Trip") as! [NSManagedObject]
+        for eachTrip in cdTrips {
+            trips.append(eachTrip.valueForKey("name") as! String)
+        }
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }

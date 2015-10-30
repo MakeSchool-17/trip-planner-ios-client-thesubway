@@ -23,20 +23,20 @@ class CoreDataUtil {
             print("could not save")
         }
     }
-    class func coreDataGet(entity : String) {
+    class func coreDataGet(entity : String) -> [AnyObject]! {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
         let request = NSFetchRequest(entityName: entity)
         request.returnsObjectsAsFaults = false
         var results : [AnyObject]?
         do {
-            results = try context.executeFetchRequest(request)
-            print(results)
+            results = try context.executeFetchRequest(request) as [AnyObject]?
         }
         catch {
             print("could not fetch")
-            return
+            return nil
         }
+        return results
     }
     
 }
