@@ -21,6 +21,7 @@
 		2725EA501BCC334B00676972 /* TripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725EA4F1BCC334B00676972 /* TripPlannerUITests.swift */; };
 		27A318381BDF081D0003BFBC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A318371BDF081D0003BFBC /* NetworkController.swift */; };
 		27A3183C1BE3F2B30003BFBC /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */; };
+		27A3183E1BE441BE0003BFBC /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3183D1BE441BE0003BFBC /* Trip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		2725EA511BCC334B00676972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A318371BDF081D0003BFBC /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
+		27A3183D1BE441BE0003BFBC /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				2720F6A91BD82E9D00F404E8 /* AddWaypointViewController.swift */,
 				27A318371BDF081D0003BFBC /* NetworkController.swift */,
 				27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */,
+				27A3183D1BE441BE0003BFBC /* Trip.swift */,
 				2725EA301BCC334A00676972 /* Main.storyboard */,
 				2725EA361BCC334A00676972 /* Assets.xcassets */,
 				2725EA381BCC334A00676972 /* LaunchScreen.storyboard */,
@@ -280,6 +283,7 @@
 				2720F6A61BD6D0BB00F404E8 /* MyTripViewController.swift in Sources */,
 				2725EA2F1BCC334A00676972 /* PlannedTripsViewController.swift in Sources */,
 				2720F6A41BD6C6F800F404E8 /* AddTripViewController.swift in Sources */,
+				27A3183E1BE441BE0003BFBC /* Trip.swift in Sources */,
 				2725EA351BCC334A00676972 /* TripPlanner.xcdatamodeld in Sources */,
 				2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */,
 				27A318381BDF081D0003BFBC /* NetworkController.swift in Sources */,

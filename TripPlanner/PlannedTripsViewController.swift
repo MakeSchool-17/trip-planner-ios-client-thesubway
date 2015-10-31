@@ -16,13 +16,10 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        trips.append("Trip to San Francisco")
-        trips.append("Trip to Stuttgart")
-        trips.append("Trip to Moscow")
-        trips.append("Trip to Brasilia")
         let cdTrips = CoreDataUtil.coreDataGet("Trip") as! [NSManagedObject]
         for eachTrip in cdTrips {
-            trips.append(eachTrip.valueForKey("name") as! String)
+            let trip = Trip(name: eachTrip.valueForKey("name") as! String)
+            self.trips.append(trip.name)
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
