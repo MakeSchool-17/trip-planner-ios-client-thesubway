@@ -18,7 +18,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         let cdTrips = CoreDataUtil.coreDataGet("Trip") as! [NSManagedObject]
         for eachTrip in cdTrips {
-            let trip = Trip(name: eachTrip.valueForKey("name") as! String)
+            let trip = Trip(object: eachTrip)
             self.trips.append(trip.name)
         }
         self.tableView.delegate = self

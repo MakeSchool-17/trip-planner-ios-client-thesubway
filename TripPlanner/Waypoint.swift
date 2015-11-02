@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import CoreData
 
 class Waypoint {
+    var object : NSManagedObject
     var trip : Trip
-    init(trip : Trip) {
+    init(object : NSManagedObject, trip : Trip) {
+        self.object = object
         self.trip = trip
     }
 }
