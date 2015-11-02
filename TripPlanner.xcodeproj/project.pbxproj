@@ -22,6 +22,7 @@
 		27A318381BDF081D0003BFBC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A318371BDF081D0003BFBC /* NetworkController.swift */; };
 		27A3183C1BE3F2B30003BFBC /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */; };
 		27A3183E1BE441BE0003BFBC /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3183D1BE441BE0003BFBC /* Trip.swift */; };
+		27A318401BE6F2380003BFBC /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3183F1BE6F2380003BFBC /* Waypoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		27A318371BDF081D0003BFBC /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		27A3183D1BE441BE0003BFBC /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		27A3183F1BE6F2380003BFBC /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				27A318371BDF081D0003BFBC /* NetworkController.swift */,
 				27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */,
 				27A3183D1BE441BE0003BFBC /* Trip.swift */,
+				27A3183F1BE6F2380003BFBC /* Waypoint.swift */,
 				2725EA301BCC334A00676972 /* Main.storyboard */,
 				2725EA361BCC334A00676972 /* Assets.xcassets */,
 				2725EA381BCC334A00676972 /* LaunchScreen.storyboard */,
@@ -288,6 +291,7 @@
 				2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */,
 				27A318381BDF081D0003BFBC /* NetworkController.swift in Sources */,
 				27A3183C1BE3F2B30003BFBC /* CoreDataUtil.swift in Sources */,
+				27A318401BE6F2380003BFBC /* Waypoint.swift in Sources */,
 				2720F6AA1BD82E9D00F404E8 /* AddWaypointViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

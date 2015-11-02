@@ -10,6 +10,7 @@ import UIKit
 
 class Trip {
     var name : String
+    var waypoints : [Waypoint] = []
     init(name : String) {
         self.name = name
     }
