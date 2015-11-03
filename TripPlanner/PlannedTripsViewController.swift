@@ -36,8 +36,12 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let trip = self.trips[indexPath.row]
+            let waypoints = CoreDataUtil.searchWaypoints(forTrip: trip) as [Waypoint]
             let deleteResult = CoreDataUtil.deleteTrip(trip)
             if deleteResult == true {
+                for eachWaypoint in waypoints {
+                    CoreDataUtil.deleteWaypoint(eachWaypoint)
+                }
                 self.trips.removeAtIndex(indexPath.row)
                 self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             }

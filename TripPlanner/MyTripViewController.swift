@@ -40,7 +40,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         // TODO: duplicate line
         waypointTableView.delegate = self
         waypointTableView.dataSource = self
-        self.lblDestination.text = "Destination: \(self.trip.name)"
+        self.lblDestination.text = "Destination: \(self.trip.name!)"
         self.lblTravelDate.text = "Travel Date: 07/11/16"
         self.waypointTableView.reloadData()
     }
