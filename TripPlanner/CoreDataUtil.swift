@@ -73,6 +73,26 @@ class CoreDataUtil {
         }
         return results
     }
+    class func getWaypoint(key : String, value : String) -> Waypoint! {
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest(entityName: "Waypoint")
+        request.predicate = NSPredicate(format: "\(key) = %@", value)
+        request.returnsObjectsAsFaults = false
+        var results : [Waypoint]?
+        do {
+            results = try context.executeFetchRequest(request) as? [Waypoint]
+        }
+        catch {
+            print("could not fetch")
+            return nil
+        }
+        if results != nil && results?.count > 0 {
+            let waypoint = results![0]
+            return waypoint
+        }
+        return nil
+    }
     class func searchWaypoints(forTrip trip : Trip) -> [Waypoint]! {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
