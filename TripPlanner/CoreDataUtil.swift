@@ -38,5 +38,20 @@ class CoreDataUtil {
         }
         return results
     }
-    
+    class func coreDataSearch(entityName : String, key : String, value : String) -> [NSManagedObject]! {
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest(entityName: entityName)
+        request.predicate = NSPredicate(format: "\(key) = %@", value)
+        request.returnsObjectsAsFaults = false
+        var results : [NSManagedObject]?
+        do {
+            results = try context.executeFetchRequest(request) as? [NSManagedObject]
+        }
+        catch {
+            print("could not fetch")
+            return nil
+        }
+        return results
+    }
 }
