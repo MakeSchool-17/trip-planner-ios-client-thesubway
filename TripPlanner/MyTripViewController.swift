@@ -24,7 +24,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.waypoints = CoreDataUtil.searchWaypoints(forTrip: self.trip)
+        self.waypoints = CoreDataUtil.searchWaypoints(forTrip: self.trip) as [Waypoint]
     }
     
     override func viewWillAppear(animated: Bool) {

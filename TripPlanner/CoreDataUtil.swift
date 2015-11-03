@@ -24,11 +24,15 @@ class CoreDataUtil {
         }
         return newTrip
     }
-    class func addWaypoint(name : String, forTrip trip : Trip) -> Waypoint? {
+    class func addWaypoint(info : NSDictionary, forTrip trip : Trip) -> Waypoint? {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
         let newWaypoint : Waypoint = NSEntityDescription.insertNewObjectForEntityForName("Waypoint", inManagedObjectContext: context) as! Waypoint
-        newWaypoint.setValue(name, forKey: "name")
+        newWaypoint.setValue(info["name"], forKey: "name")
+        let geometry = info["geometry"] as! NSDictionary
+        let location = geometry["location"] as! NSDictionary
+        newWaypoint.setValue(location["lat"], forKey: "latitude")
+        newWaypoint.setValue(location["lng"], forKey: "longitude")
         newWaypoint.setValue(trip, forKey: "trip")
         do {
             try context.save()

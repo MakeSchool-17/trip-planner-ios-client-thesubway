@@ -216,8 +216,8 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             let annotation : AnnotationDelegate = view.annotation as! AnnotationDelegate
             let alert = UIAlertController(title: "", message: "Would you like to add \(annotation.title!) as a waypoint?", preferredStyle: UIAlertControllerStyle.Alert)
             let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { _ in
-//                let result = annotation.mapItem!
-                let waypoint = CoreDataUtil.addWaypoint(annotation.title!, forTrip: self.currentTrip!)
+                let result = annotation.mapItem!
+                let waypoint = CoreDataUtil.addWaypoint(result, forTrip: self.currentTrip!)
                 self.delegate?.waypointAddedFromVC(waypoint!)
                 self.navigationController?.popViewControllerAnimated(true)
             })
