@@ -15,7 +15,7 @@ import MapKit
 */
 
 protocol AddWaypointVCDelegate {
-    func waypointAddedFromVC(dict : NSDictionary)
+    func waypointAddedFromVC(dict : Waypoint)
 }
 
 class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -24,9 +24,10 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
     @IBOutlet var searchBar: UISearchBar!
     
     @IBOutlet var waypointView: UIView!
-    var currentWaypoint : NSDictionary!
+    var currentWaypoint : Waypoint!
     @IBOutlet var lblWaypoint: UILabel!
     var delegate : AddWaypointVCDelegate?
+    var currentTrip : Trip!
     
     @IBOutlet var mapView: MKMapView!
     var locationManager = CLLocationManager()
@@ -44,7 +45,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         if self.currentWaypoint != nil {
             self.searchTableView.hidden = true
             self.waypointView.hidden = false
-            self.lblWaypoint.text = currentWaypoint["name"] as? String
+            self.lblWaypoint.text = currentWaypoint.name!
         }
         else {
             self.searchTableView.hidden = false
@@ -104,14 +105,13 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         //if no waypoint, then use the user's current region
         self.currentRegion = MKCoordinateRegion()
         if self.currentWaypoint != nil {
-            let geometry = self.currentWaypoint["geometry"] as! NSDictionary
-            let location = geometry["location"] as! NSDictionary
-            let wayLat = location["lat"]!.doubleValue
-            let wayLong = location["lng"]!.doubleValue
+            let wayLat = self.currentWaypoint.latitude!.doubleValue
+            let wayLong = self.currentWaypoint.longitude!.doubleValue
             self.currentRegion.center.latitude = wayLat
             self.currentRegion.center.longitude = wayLong
-            let wayName = self.currentWaypoint["name"] as! String
-            self.dropPin(wayLat, longitude: wayLong, title: wayName, mapItem: self.currentWaypoint, isWaypoint: true)
+            let wayName = self.currentWaypoint.name!
+            let dictWaypoint = NSDictionary(objects: [self.currentWaypoint.name!, self.currentWaypoint.latitude!, self.currentWaypoint.longitude!], forKeys: ["name", "lat", "lng"])
+            self.dropPin(wayLat, longitude: wayLong, title: wayName, mapItem: dictWaypoint, isWaypoint: true)
         }
         else {
             self.currentRegion.center.latitude = self.userCoordinate.latitude
@@ -216,8 +216,9 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
             let annotation : AnnotationDelegate = view.annotation as! AnnotationDelegate
             let alert = UIAlertController(title: "", message: "Would you like to add \(annotation.title!) as a waypoint?", preferredStyle: UIAlertControllerStyle.Alert)
             let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { _ in
-                let result = annotation.mapItem!
-                self.delegate?.waypointAddedFromVC(result)
+//                let result = annotation.mapItem!
+                let waypoint = CoreDataUtil.addWaypoint(annotation.title!, forTrip: self.currentTrip!)
+                self.delegate?.waypointAddedFromVC(waypoint!)
                 self.navigationController?.popViewControllerAnimated(true)
             })
             let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: { _ in

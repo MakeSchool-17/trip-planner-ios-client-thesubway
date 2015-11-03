@@ -18,12 +18,25 @@ class CoreDataUtil {
         newTrip.setValue(value, forKey: key)
         do {
             try context.save()
-            print("saved")
         } catch {
             print("could not save")
             return nil
         }
         return newTrip
+    }
+    class func addWaypoint(name : String, forTrip trip : Trip) -> Waypoint? {
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        let newWaypoint : Waypoint = NSEntityDescription.insertNewObjectForEntityForName("Waypoint", inManagedObjectContext: context) as! Waypoint
+        newWaypoint.setValue(name, forKey: "name")
+        newWaypoint.setValue(trip, forKey: "trip")
+        do {
+            try context.save()
+        } catch {
+            print("could not save")
+            return nil
+        }
+        return newWaypoint
     }
     class func getTrips() -> [Trip]! {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -55,5 +68,21 @@ class CoreDataUtil {
             return nil
         }
         return results
+    }
+    class func searchWaypoints(forTrip trip : Trip) -> [Waypoint]! {
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest(entityName: "Waypoint")
+        request.predicate = NSPredicate(format: "trip = %@", trip)
+        request.returnsObjectsAsFaults = false
+        var waypoints : [Waypoint]?
+        do {
+            waypoints = try context.executeFetchRequest(request) as? [Waypoint]
+        }
+        catch {
+            print("could not fetch")
+            return nil
+        }
+        return waypoints
     }
 }

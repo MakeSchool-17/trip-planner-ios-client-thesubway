@@ -19,12 +19,12 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var noWaypointsView: UIView!
     // TODO: waypoints: [String] = [] would be more typical for swift
-    var waypoints: [NSDictionary] = []
+    var waypoints: [Waypoint] = []
     @IBOutlet var waypointTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CoreDataUtil.searchTrip("name", value: self.trip.name!)
+        self.waypoints = CoreDataUtil.searchWaypoints(forTrip: self.trip)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,14 +57,15 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         self.addWayPoints(nil)
     }
     
-    func waypointAddedFromVC(dict: NSDictionary) {
-        self.waypoints.append(dict)
+    func waypointAddedFromVC(waypoint: Waypoint) {
+        self.waypoints.append(waypoint)
     }
   
     // TODO: I would call this `tapped` waypoint
-    func addWayPoints(tappedWaypoint: NSDictionary!) {
+    func addWayPoints(tappedWaypoint: Waypoint!) {
         let addWaypointVC = self.storyboard?.instantiateViewControllerWithIdentifier("addWaypointVC") as? AddWaypointViewController
         addWaypointVC?.delegate = self
+        addWaypointVC?.currentTrip = self.trip
         if tappedWaypoint != nil {
             addWaypointVC?.currentWaypoint = tappedWaypoint
         }
@@ -72,7 +73,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let waypoint : NSDictionary = self.waypoints[indexPath.row] as NSDictionary
+        let waypoint : Waypoint = self.waypoints[indexPath.row] as Waypoint
         self.addWayPoints(waypoint)
     }
     
@@ -82,8 +83,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("waypointCell")
-        let waypoint : NSDictionary = waypoints[indexPath.row]
-        cell?.textLabel?.text = waypoint["name"] as? String
+        let waypoint : Waypoint = waypoints[indexPath.row]
+        cell?.textLabel?.text = waypoint.name! as String
         return cell!
     }
 

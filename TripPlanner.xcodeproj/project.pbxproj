@@ -23,8 +23,8 @@
 		27A3183C1BE3F2B30003BFBC /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */; };
 		27A3184A1BE8506D0003BFBC /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A318461BE8506D0003BFBC /* Trip+CoreDataProperties.swift */; };
 		27A3184B1BE8506D0003BFBC /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A318471BE8506D0003BFBC /* Trip.swift */; };
-		27A3184C1BE8506D0003BFBC /* Waypoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A318481BE8506D0003BFBC /* Waypoint+CoreDataProperties.swift */; };
 		27A3184D1BE8506D0003BFBC /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A318491BE8506D0003BFBC /* Waypoint.swift */; };
+		27A3184F1BE945440003BFBC /* Waypoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3184E1BE945440003BFBC /* Waypoint+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +67,8 @@
 		27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		27A318461BE8506D0003BFBC /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		27A318471BE8506D0003BFBC /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
-		27A318481BE8506D0003BFBC /* Waypoint+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Waypoint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		27A318491BE8506D0003BFBC /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
+		27A3184E1BE945440003BFBC /* Waypoint+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Waypoint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +165,8 @@
 			children = (
 				27A318461BE8506D0003BFBC /* Trip+CoreDataProperties.swift */,
 				27A318471BE8506D0003BFBC /* Trip.swift */,
-				27A318481BE8506D0003BFBC /* Waypoint+CoreDataProperties.swift */,
 				27A318491BE8506D0003BFBC /* Waypoint.swift */,
+				27A3184E1BE945440003BFBC /* Waypoint+CoreDataProperties.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -320,10 +320,10 @@
 				2720F6A41BD6C6F800F404E8 /* AddTripViewController.swift in Sources */,
 				2725EA351BCC334A00676972 /* TripPlanner.xcdatamodeld in Sources */,
 				2725EA2D1BCC334A00676972 /* AppDelegate.swift in Sources */,
-				27A3184C1BE8506D0003BFBC /* Waypoint+CoreDataProperties.swift in Sources */,
 				27A3184D1BE8506D0003BFBC /* Waypoint.swift in Sources */,
 				27A318381BDF081D0003BFBC /* NetworkController.swift in Sources */,
 				27A3183C1BE3F2B30003BFBC /* CoreDataUtil.swift in Sources */,
+				27A3184F1BE945440003BFBC /* Waypoint+CoreDataProperties.swift in Sources */,
 				2720F6AA1BD82E9D00F404E8 /* AddWaypointViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
