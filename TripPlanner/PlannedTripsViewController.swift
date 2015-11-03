@@ -12,14 +12,14 @@ import CoreData
 class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddTripVCDelegate {
 
     @IBOutlet var tableView: UITableView!
-    var trips = [String]()
+    var trips = [Trip]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let cdTrips = CoreDataUtil.coreDataGet("Trip") as! [NSManagedObject]
         for eachTrip in cdTrips {
             let trip = Trip(object: eachTrip)
-            self.trips.append(trip.name)
+            self.trips.append(trip)
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -36,7 +36,8 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("tripCell")
-        cell?.textLabel?.text = self.trips[indexPath.row]
+        let cellTrip = self.trips[indexPath.row]
+        cell?.textLabel?.text = cellTrip.name
         return cell!
     }
     
@@ -49,7 +50,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
           I would recommend passing the entire trip to the tripVC, then the tripVC itself can extract
           the date and destination from the trip.
         */
-        myTripVC.tripDestination = self.trips[indexPath.row]
+        myTripVC.trip = self.trips[indexPath.row]
         myTripVC.tripTravelDate = "Travel Date: 07/11/16"
         self.navigationController?.pushViewController(myTripVC, animated: true)
     }
@@ -64,8 +65,11 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
        called directly */
     func tripAddedFromVC(vc: AddTripViewController, tripName: String) {
         CoreDataUtil.coreDataAdd(tripName, key: "name", entity: "Trip")
-        self.trips.append(tripName)
-        CoreDataUtil.coreDataGet("Trip")
+        var arrResults = CoreDataUtil.coreDataSearch("Trip", key: "name", value: tripName) as [NSManagedObject]
+        let currentTrip = Trip(object: arrResults[0])
+        self.trips.append(currentTrip)
+        arrResults = CoreDataUtil.coreDataGet("Trip") as! [NSManagedObject]
+        print(arrResults)
         self.tableView.reloadData()
     }
 }

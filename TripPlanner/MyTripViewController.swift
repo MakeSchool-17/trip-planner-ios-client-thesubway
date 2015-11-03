@@ -15,7 +15,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var tripImageView: UIImageView!
     @IBOutlet var lblDestination: UILabel!
     @IBOutlet var lblTravelDate: UILabel!
-    var tripDestination = ""
+    var trip : Trip!
     var tripTravelDate = ""
     
     @IBOutlet var noWaypointsView: UIView!
@@ -25,19 +25,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context : NSManagedObjectContext = appDelegate.managedObjectContext
-        let request = NSFetchRequest(entityName: "Trip")
-        request.predicate = NSPredicate(format: "name = %@", self.tripDestination)
-        request.returnsObjectsAsFaults = false
-        do {
-            let results = try context.executeFetchRequest(request) as! [NSManagedObject]
-            print(results)
-            print(results.count)
-        }
-        catch {
-            print("could not fetch")
-        }
+        CoreDataUtil.coreDataSearch("Trip", key: "name", value: self.trip.name)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,12 +37,12 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         else {
             self.noWaypointsView.hidden = true
             self.hasWaypointsView.hidden = false
-            self.lblDestination.text = "Destination: \(self.tripDestination)"
+            self.lblDestination.text = "Destination: \(self.trip.name)"
         }
         // TODO: duplicate line
         waypointTableView.delegate = self
         waypointTableView.dataSource = self
-        self.lblDestination.text = self.tripDestination
+        self.lblDestination.text = self.trip.name
         self.lblTravelDate.text = self.tripTravelDate
         self.waypointTableView.reloadData()
     }
