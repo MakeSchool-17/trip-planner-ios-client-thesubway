@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MyTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddWaypointVCDelegate {
 
@@ -24,6 +25,19 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest(entityName: "Trip")
+        request.predicate = NSPredicate(format: "name = %@", self.tripDestination)
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try context.executeFetchRequest(request) as! [NSManagedObject]
+            print(results)
+            print(results.count)
+        }
+        catch {
+            print("could not fetch")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,6 +49,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         else {
             self.noWaypointsView.hidden = true
             self.hasWaypointsView.hidden = false
+            self.lblDestination.text = "Destination: \(self.tripDestination)"
         }
         // TODO: duplicate line
         waypointTableView.delegate = self

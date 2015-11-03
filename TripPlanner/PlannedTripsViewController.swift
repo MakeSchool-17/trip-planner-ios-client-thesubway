@@ -49,7 +49,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
           I would recommend passing the entire trip to the tripVC, then the tripVC itself can extract
           the date and destination from the trip.
         */
-        myTripVC.tripDestination = "Destination: \(self.trips[indexPath.row])"
+        myTripVC.tripDestination = self.trips[indexPath.row]
         myTripVC.tripTravelDate = "Travel Date: 07/11/16"
         self.navigationController?.pushViewController(myTripVC, animated: true)
     }
