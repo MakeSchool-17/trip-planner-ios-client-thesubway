@@ -109,6 +109,18 @@ class CoreDataUtil {
         }
         return waypoints
     }
+    class func deleteTrip(trip: Trip) -> Bool {
+        let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDelegate.managedObjectContext
+        context.deleteObject(trip)
+        do {
+            try context.save()
+        } catch {
+            print("could not delete")
+            return false
+        }
+        return true
+    }
     class func deleteWaypoint(waypoint: Waypoint) -> Bool {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
