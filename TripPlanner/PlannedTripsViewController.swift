@@ -16,10 +16,9 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cdTrips = CoreDataUtil.coreDataGet("Trip") as! [NSManagedObject]
+        let cdTrips = CoreDataUtil.getTrips() as [Trip]
         for eachTrip in cdTrips {
-            let trip = Trip(object: eachTrip)
-            self.trips.append(trip)
+            self.trips.append(eachTrip)
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -63,11 +62,12 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     /* TODO: It would be prefarable to communicate via a protocol instead of having this method being
        called directly */
     func tripAddedFromVC(vc: AddTripViewController, tripName: String) {
-        CoreDataUtil.coreDataAdd(tripName, key: "name", entity: "Trip")
-        var arrResults = CoreDataUtil.coreDataSearch("Trip", key: "name", value: tripName) as [NSManagedObject]
-        let currentTrip = Trip(object: arrResults[0])
-        self.trips.append(currentTrip)
-        arrResults = CoreDataUtil.coreDataGet("Trip") as! [NSManagedObject]
+        let currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
+        var arrResults = CoreDataUtil.searchTrip("name", value: tripName) as [NSManagedObject]
+        if currentTrip != nil {
+            self.trips.append(currentTrip!)
+        }
+        arrResults = CoreDataUtil.getTrips() as [Trip]
         print(arrResults)
         self.tableView.reloadData()
     }

@@ -24,7 +24,7 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CoreDataUtil.coreDataSearch("Trip", key: "name", value: self.trip.name)
+        CoreDataUtil.searchTrip("name", value: self.trip.name!)
     }
     
     override func viewWillAppear(animated: Bool) {

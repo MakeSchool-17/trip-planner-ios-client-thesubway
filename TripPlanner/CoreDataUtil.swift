@@ -11,26 +11,28 @@ import CoreData
 
 class CoreDataUtil {
     
-    class func coreDataAdd(value : String, key : String, entity : String) {
+    class func addTrip(value : String, key : String) -> Trip? {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
-        let newTrip = NSEntityDescription.insertNewObjectForEntityForName("Trip", inManagedObjectContext: context)
+        let newTrip : Trip = NSEntityDescription.insertNewObjectForEntityForName("Trip", inManagedObjectContext: context) as! Trip
         newTrip.setValue(value, forKey: key)
         do {
             try context.save()
             print("saved")
         } catch {
             print("could not save")
+            return nil
         }
+        return newTrip
     }
-    class func coreDataGet(entity : String) -> [AnyObject]! {
+    class func getTrips() -> [Trip]! {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
-        let request = NSFetchRequest(entityName: entity)
+        let request = NSFetchRequest(entityName: "Trip")
         request.returnsObjectsAsFaults = false
-        var results : [AnyObject]?
+        var results : [Trip]?
         do {
-            results = try context.executeFetchRequest(request) as [AnyObject]?
+            results = try context.executeFetchRequest(request) as? [Trip]
         }
         catch {
             print("could not fetch")
@@ -38,15 +40,15 @@ class CoreDataUtil {
         }
         return results
     }
-    class func coreDataSearch(entityName : String, key : String, value : String) -> [NSManagedObject]! {
+    class func searchTrip(key : String, value : String) -> [Trip]! {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
-        let request = NSFetchRequest(entityName: entityName)
+        let request = NSFetchRequest(entityName: "Trip")
         request.predicate = NSPredicate(format: "\(key) = %@", value)
         request.returnsObjectsAsFaults = false
-        var results : [NSManagedObject]?
+        var results : [Trip]?
         do {
-            results = try context.executeFetchRequest(request) as? [NSManagedObject]
+            results = try context.executeFetchRequest(request) as? [Trip]
         }
         catch {
             print("could not fetch")
