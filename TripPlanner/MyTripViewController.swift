@@ -78,7 +78,12 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            print("delete")
+            let waypoint = self.waypoints[indexPath.row]
+            let deleteResult = CoreDataUtil.deleteWaypoint(waypoint)
+            if deleteResult == true {
+                self.waypoints.removeAtIndex(indexPath.row)
+                self.waypointTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
         }
     }
     
