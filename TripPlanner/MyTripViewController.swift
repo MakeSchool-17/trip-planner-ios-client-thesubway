@@ -16,7 +16,6 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var lblDestination: UILabel!
     @IBOutlet var lblTravelDate: UILabel!
     var trip : Trip!
-    var tripTravelDate = ""
     
     @IBOutlet var noWaypointsView: UIView!
     // TODO: waypoints: [String] = [] would be more typical for swift
@@ -37,13 +36,12 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         else {
             self.noWaypointsView.hidden = true
             self.hasWaypointsView.hidden = false
-            self.lblDestination.text = "Destination: \(self.trip.name)"
         }
         // TODO: duplicate line
         waypointTableView.delegate = self
         waypointTableView.dataSource = self
-        self.lblDestination.text = self.trip.name
-        self.lblTravelDate.text = self.tripTravelDate
+        self.lblDestination.text = "Destination: \(self.trip.name)"
+        self.lblTravelDate.text = "Travel Date: 07/11/16"
         self.waypointTableView.reloadData()
     }
 

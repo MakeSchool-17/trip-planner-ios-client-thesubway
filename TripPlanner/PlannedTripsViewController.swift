@@ -51,7 +51,6 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
           the date and destination from the trip.
         */
         myTripVC.trip = self.trips[indexPath.row]
-        myTripVC.tripTravelDate = "Travel Date: 07/11/16"
         self.navigationController?.pushViewController(myTripVC, animated: true)
     }
 
