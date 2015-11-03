@@ -117,14 +117,9 @@
 			children = (
 				2720F6A71BD80C5A00F404E8 /* CentreBlockParliamentHill.jpg */,
 				2725EA2C1BCC334A00676972 /* AppDelegate.swift */,
-				2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */,
-				2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */,
-				2720F6A51BD6D0BB00F404E8 /* MyTripViewController.swift */,
-				2720F6A91BD82E9D00F404E8 /* AddWaypointViewController.swift */,
-				27A318371BDF081D0003BFBC /* NetworkController.swift */,
-				27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */,
-				27A3183D1BE441BE0003BFBC /* Trip.swift */,
-				27A3183F1BE6F2380003BFBC /* Waypoint.swift */,
+				27A318431BE83B560003BFBC /* ViewControllers */,
+				27A318411BE83B130003BFBC /* Helpers */,
+				27A318421BE83B400003BFBC /* Models */,
 				2725EA301BCC334A00676972 /* Main.storyboard */,
 				2725EA361BCC334A00676972 /* Assets.xcassets */,
 				2725EA381BCC334A00676972 /* LaunchScreen.storyboard */,
@@ -150,6 +145,35 @@
 				2725EA511BCC334B00676972 /* Info.plist */,
 			);
 			path = TripPlannerUITests;
+			sourceTree = "<group>";
+		};
+		27A318411BE83B130003BFBC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				27A318371BDF081D0003BFBC /* NetworkController.swift */,
+				27A3183B1BE3F2B30003BFBC /* CoreDataUtil.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		27A318421BE83B400003BFBC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				27A3183D1BE441BE0003BFBC /* Trip.swift */,
+				27A3183F1BE6F2380003BFBC /* Waypoint.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		27A318431BE83B560003BFBC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2725EA2E1BCC334A00676972 /* PlannedTripsViewController.swift */,
+				2720F6A31BD6C6F800F404E8 /* AddTripViewController.swift */,
+				2720F6A51BD6D0BB00F404E8 /* MyTripViewController.swift */,
+				2720F6A91BD82E9D00F404E8 /* AddWaypointViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
