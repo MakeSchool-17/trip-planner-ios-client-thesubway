@@ -72,6 +72,16 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationController?.pushViewController(addWaypointVC!, animated: true)
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            print("delete")
+        }
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let waypoint : Waypoint = self.waypoints[indexPath.row] as Waypoint
         self.addWayPoints(waypoint)
