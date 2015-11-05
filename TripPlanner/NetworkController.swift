@@ -75,10 +75,10 @@ class NetworkController  {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         task.resume()
     }
-    func addMyObject(name : String) {
-        let content = ["name" : name]
+    func addUser(name : String, password : String) {
+        let content = ["name" : name, "password" : password]
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
-        let url = NSURL(string: "\(self.localUrl)myobject/")!
+        let url = NSURL(string: "\(self.localUrl)user/")!
         let urlRequest = NSMutableURLRequest(URL: url)
         urlRequest.HTTPMethod = "POST"
         urlRequest.HTTPBody = jsonData
@@ -89,6 +89,13 @@ class NetworkController  {
                 switch httpResponse.statusCode {
                 case 200:
                     print("everything is awesome!")
+                    do {
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        print(json)
+                    }
+                    catch {
+                        print(error)
+                    }
                 case 404:
                     print("not found")
                 default:
