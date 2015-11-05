@@ -106,10 +106,19 @@ class NetworkController  {
         }
         task.resume()
     }
-    func getMyObject(id : String) {
-        let url = NSURL(string: "\(self.localUrl)myobject/\(id)")!
+    func createAuthHeader(name : String, password : String) -> String {
+        let pwstr = "\(name):\(password)"
+        let plainData = pwstr.dataUsingEncoding(NSUTF8StringEncoding)
+        let base64String = plainData?.base64EncodedStringWithOptions([])
+        return "Basic \(base64String!)"
+    }
+    func getUser(id : String, name : String, password : String) {
+        let authHeader = self.createAuthHeader(name, password: password)
+        print(authHeader)
+        let url = NSURL(string: "\(self.localUrl)user/\(id)")!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
+        request.addValue(authHeader, forHTTPHeaderField: "Authorization")
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error: NSError?) -> Void in
             if let httpResponse = response as? NSHTTPURLResponse {
