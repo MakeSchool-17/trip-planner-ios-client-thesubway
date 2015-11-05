@@ -12,6 +12,7 @@ import MapKit
 class NetworkController  {
     
     let serverKey = "AIzaSyC81O4yTA6Urd0s-OxGUT2SEfvv43xU_Tk"
+    let localUrl = "http://127.0.0.1:5000/"
     init() {
     }
     
@@ -72,6 +73,30 @@ class NetworkController  {
             }
         }
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        task.resume()
+    }
+    func addMyObject(name : String) {
+        let content = ["name" : name]
+        let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
+        let url = NSURL(string: "\(self.localUrl)myobject/")!
+        let urlRequest = NSMutableURLRequest(URL: url)
+        urlRequest.HTTPMethod = "POST"
+        urlRequest.HTTPBody = jsonData
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) { (data : NSData?, response : NSURLResponse?, error: NSError?) -> Void in
+            if let httpResponse = response as? NSHTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 200:
+                    print("everything is awesome!")
+                case 404:
+                    print("not found")
+                default:
+                    print("error \(httpResponse.statusCode)")
+                    print(httpResponse)
+                }
+            }
+        }
         task.resume()
     }
     
