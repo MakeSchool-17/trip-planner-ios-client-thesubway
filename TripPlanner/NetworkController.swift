@@ -203,4 +203,33 @@ class NetworkController  {
         }
         task.resume()
     }
+    func deleteTrip(tripId : String, username : String, password : String) {
+        let authHeader = self.createAuthHeader(username, password: password)
+        let url = NSURL(string: "\(self.localUrl)trip/\(tripId)")!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "DELETE"
+        request.addValue(authHeader, forHTTPHeaderField: "Authorization")
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error: NSError?) -> Void in
+            if let httpResponse = response as? NSHTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 200:
+                    print("everything is awesome!")
+                    do {
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        print(json)
+                    }
+                    catch {
+                        print(error)
+                    }
+                case 404:
+                    print("not found")
+                default:
+                    print("error \(httpResponse.statusCode)")
+                    print(httpResponse)
+                }
+            }
+        }
+        task.resume()
+    }
 }
