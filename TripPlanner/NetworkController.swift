@@ -15,7 +15,12 @@ class NetworkController  {
     let localUrl = "http://127.0.0.1:5000/"
     init() {
     }
-    
+    func createAuthHeader(name : String, password : String) -> String {
+        let pwstr = "\(name):\(password)"
+        let plainData = pwstr.dataUsingEncoding(NSUTF8StringEncoding)
+        let base64String = plainData?.base64EncodedStringWithOptions([])
+        return "Basic \(base64String!)"
+    }
     func fetchPlaces(searchString : String!, userCoordinate: CLLocationCoordinate2D!, callback: (places: [NSDictionary]?,
         errorDescription: String?) -> Void) -> Void {
             let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(userCoordinate.latitude),\(userCoordinate.longitude)&radius=500&types=food&name=\(searchString)&key=\(self.serverKey)")
@@ -106,18 +111,45 @@ class NetworkController  {
         }
         task.resume()
     }
-    func createAuthHeader(name : String, password : String) -> String {
-        let pwstr = "\(name):\(password)"
-        let plainData = pwstr.dataUsingEncoding(NSUTF8StringEncoding)
-        let base64String = plainData?.base64EncodedStringWithOptions([])
-        return "Basic \(base64String!)"
-    }
-    func getUser(id : String, name : String, password : String) {
-        let authHeader = self.createAuthHeader(name, password: password)
-        print(authHeader)
+    func getUser(id : String, username : String, password : String) {
+        let authHeader = self.createAuthHeader(username, password: password)
         let url = NSURL(string: "\(self.localUrl)user/\(id)")!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
+        request.addValue(authHeader, forHTTPHeaderField: "Authorization")
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error: NSError?) -> Void in
+            if let httpResponse = response as? NSHTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 200:
+                    print("everything is awesome!")
+                    do {
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        print(json)
+                    }
+                    catch {
+                        print(error)
+                    }
+                case 404:
+                    print("not found")
+                default:
+                    print("error \(httpResponse.statusCode)")
+                    print(httpResponse)
+                }
+            }
+        }
+        task.resume()
+    }
+    func addTrip(tripName : String, username : String, password : String) {
+        let authHeader = self.createAuthHeader(username, password: password)
+        let content = ["name" : tripName]
+        let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
+        let url = NSURL(string: "\(self.localUrl)trip/")!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = jsonData
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //authentication required, so:
         request.addValue(authHeader, forHTTPHeaderField: "Authorization")
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error: NSError?) -> Void in
