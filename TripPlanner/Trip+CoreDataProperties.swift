@@ -2,7 +2,7 @@
 //  Trip+CoreDataProperties.swift
 //  TripPlanner
 //
-//  Created by Dan Hoang on 11/2/15.
+//  Created by Dan Hoang on 11/6/15.
 //  Copyright © 2015 Dan Hoang. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,6 +15,7 @@ import CoreData
 extension Trip {
 
     @NSManaged var name: String?
+    @NSManaged var lastModified: NSDate?
     @NSManaged var waypoints: NSSet?
 
 }
