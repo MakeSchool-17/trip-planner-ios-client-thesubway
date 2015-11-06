@@ -22,6 +22,20 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        let networkC = NetworkController()
+        networkC.getAllTripsForUser("MyUser1", password: "password2") { (tripsArr, errorDescription) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                for eachDict in tripsArr {
+                    let eachName = eachDict["name"] as! String
+                    let eachTrip = CoreDataUtil.addTrip(eachName, key: "name")
+                    if eachTrip != nil {
+                        self.trips.append(eachTrip!)
+                    }
+                }
+                self.tableView.reloadData()
+                print(tripsArr)
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
