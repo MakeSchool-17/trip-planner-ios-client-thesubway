@@ -26,8 +26,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         networkC.getAllTripsForUser("MyUser1", password: "password2") { (tripsArr, errorDescription) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 for eachDict in tripsArr {
-                    let eachName = eachDict["name"] as! String
-                    let eachTrip = CoreDataUtil.addTrip(eachName, key: "name")
+                    let eachTrip = CoreDataUtil.addTrip(eachDict)
                     if eachTrip != nil {
                         self.trips.append(eachTrip!)
                     }
@@ -99,8 +98,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         var currentTrip : Trip!
         let tripDict : NSMutableDictionary = ["name" : tripName]
         networkController.addTrip(tripDict, username: "MyUser1", password: "password2") { (trip, errorDescription) -> Void in
-            let tripName = trip["name"] as! String
-            currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
+            currentTrip = CoreDataUtil.addTrip(trip)
             dispatch_async(dispatch_get_main_queue(), {
                 if currentTrip != nil {
                     self.trips.append(currentTrip!)
@@ -111,7 +109,7 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         //let currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
         var arrResults = CoreDataUtil.searchTrip("name", value: tripName) as [NSManagedObject]
         arrResults = CoreDataUtil.getTrips() as [Trip]
-        print(arrResults)
+        print("arrResults: \(arrResults)")
     }
 }
 

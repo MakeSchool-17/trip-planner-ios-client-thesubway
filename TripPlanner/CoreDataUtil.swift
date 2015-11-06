@@ -11,8 +11,8 @@ import CoreData
 
 class CoreDataUtil {
     
-    class func addTrip(value : String, key : String) -> Trip? {
-        let existingTrip = self.searchTrip(key, value: value)
+    class func addTrip(dict : NSDictionary) -> Trip? {
+        let existingTrip = self.searchTrip("name", value: dict["name"] as! String)
         if existingTrip != nil {
             //already exists
             if existingTrip.count > 0 {
@@ -22,8 +22,9 @@ class CoreDataUtil {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
         let newTrip : Trip = NSEntityDescription.insertNewObjectForEntityForName("Trip", inManagedObjectContext: context) as! Trip
-        newTrip.setValue(value, forKey: key)
-        newTrip.setValue(NSDate(), forKey: "lastModified")
+        newTrip.setValue(dict["name"], forKey: "name")
+        newTrip.setValue(dict["lastModified"], forKey: "lastModified")
+        newTrip.setValue(NSSet(array: dict["waypoints"] as! [AnyObject]), forKey: "waypoints")
         do {
             try context.save()
         } catch {

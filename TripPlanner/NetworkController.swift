@@ -172,7 +172,9 @@ class NetworkController  {
                 case 200:
                     print("everything is awesome!")
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSMutableDictionary
+                        let dateStr = json["lastModified"] as! String
+                        json["lastModified"] = self.stringToDateJSON(dateStr)
                         callback(trip: json, errorDescription: error?.description)
                         print(json)
                     }
@@ -238,7 +240,9 @@ class NetworkController  {
                 case 200:
                     print("everything is awesome!")
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSMutableDictionary
+                        let dateStr = json["lastModified"] as! String
+                        json["lastModified"] = self.stringToDateJSON(dateStr)
                         print(json)
                     }
                     catch {
@@ -267,8 +271,15 @@ class NetworkController  {
                 case 200:
                     print("everything is awesome!")
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! [NSDictionary]
-                        callback(tripsArr: json, errorDescription: error?.description)
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! [NSMutableDictionary]
+                        var newJson = [NSMutableDictionary]()
+                        for eachDict in json {
+                            let newDict = eachDict.mutableCopy() as! NSMutableDictionary
+                            let dateStr = newDict["lastModified"] as! String
+                            newDict["lastModified"] = self.stringToDateJSON(dateStr)
+                            newJson.append(newDict)
+                        }
+                        callback(tripsArr: newJson, errorDescription: error?.description)
                     }
                     catch {
                         print(error)
