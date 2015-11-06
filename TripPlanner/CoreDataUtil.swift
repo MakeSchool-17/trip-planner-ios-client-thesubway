@@ -25,6 +25,7 @@ class CoreDataUtil {
         newTrip.setValue(dict["name"], forKey: "name")
         newTrip.setValue(dict["lastModified"], forKey: "lastModified")
         newTrip.setValue(NSSet(array: dict["waypoints"] as! [AnyObject]), forKey: "waypoints")
+        newTrip.setValue(dict["_id"], forKey: "id")
         do {
             try context.save()
         } catch {
