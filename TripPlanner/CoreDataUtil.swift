@@ -12,6 +12,13 @@ import CoreData
 class CoreDataUtil {
     
     class func addTrip(value : String, key : String) -> Trip? {
+        let existingTrip = self.searchTrip(key, value: value)
+        if existingTrip != nil {
+            //already exists
+            if existingTrip.count > 0 {
+                return nil
+            }
+        }
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
         let newTrip : Trip = NSEntityDescription.insertNewObjectForEntityForName("Trip", inManagedObjectContext: context) as! Trip
