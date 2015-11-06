@@ -140,7 +140,7 @@ class NetworkController  {
         }
         task.resume()
     }
-    func addTrip(tripName : String, username : String, password : String) {
+    func addTrip(tripName : String, username : String, password : String, callback : (trip : NSDictionary, errorDescription: String?) -> Void) {
         let authHeader = self.createAuthHeader(username, password: password)
         let waypoints = NSMutableArray()
         let content = ["name" : tripName, "waypoints" : waypoints]
@@ -160,6 +160,7 @@ class NetworkController  {
                     print("everything is awesome!")
                     do {
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        callback(trip: json, errorDescription: error?.description)
                         print(json)
                     }
                     catch {

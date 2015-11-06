@@ -95,14 +95,22 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     /* TODO: It would be prefarable to communicate via a protocol instead of having this method being
        called directly */
     func tripAddedFromVC(vc: AddTripViewController, tripName: String) {
-        let currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
-        var arrResults = CoreDataUtil.searchTrip("name", value: tripName) as [NSManagedObject]
-        if currentTrip != nil {
-            self.trips.append(currentTrip!)
+        let networkController = NetworkController()
+        var currentTrip : Trip!
+        networkController.addTrip(tripName, username: "MyUser1", password: "password2") { (trip, errorDescription) -> Void in
+            let tripName = trip["name"] as! String
+            currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
+            dispatch_async(dispatch_get_main_queue(), {
+                if currentTrip != nil {
+                    self.trips.append(currentTrip!)
+                }
+                self.tableView.reloadData()
+            })
         }
+        //let currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
+        var arrResults = CoreDataUtil.searchTrip("name", value: tripName) as [NSManagedObject]
         arrResults = CoreDataUtil.getTrips() as [Trip]
         print(arrResults)
-        self.tableView.reloadData()
     }
 }
 
