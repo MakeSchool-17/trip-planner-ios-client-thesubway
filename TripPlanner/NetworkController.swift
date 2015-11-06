@@ -15,6 +15,16 @@ class NetworkController  {
     let localUrl = "http://127.0.0.1:5000/"
     init() {
     }
+    func stringToDateJSON(dateString : String) -> NSDate {
+        let dateFormatter : NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
+        return dateFormatter.dateFromString(dateString)!
+    }
+    func dateToStringJSON(date : NSDate) -> String {
+        let dateFormatter : NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
+        return dateFormatter.stringFromDate(date)
+    }
     func createAuthHeader(name : String, password : String) -> String {
         let pwstr = "\(name):\(password)"
         let plainData = pwstr.dataUsingEncoding(NSUTF8StringEncoding)
@@ -140,10 +150,13 @@ class NetworkController  {
         }
         task.resume()
     }
-    func addTrip(tripName : String, username : String, password : String, callback : (trip : NSDictionary, errorDescription: String?) -> Void) {
+    func addTrip(tripDict : NSMutableDictionary, username : String, password : String, callback : (trip : NSDictionary, errorDescription: String?) -> Void) {
         let authHeader = self.createAuthHeader(username, password: password)
         let waypoints = NSMutableArray()
-        let content = ["name" : tripName, "waypoints" : waypoints]
+        let currentDate = NSDate()
+        let content = tripDict
+        content["waypoints"] = waypoints
+        content["lastModified"] = self.dateToStringJSON(currentDate)
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
         let url = NSURL(string: "\(self.localUrl)trip/")!
         let request = NSMutableURLRequest(URL: url)

@@ -97,7 +97,8 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     func tripAddedFromVC(vc: AddTripViewController, tripName: String) {
         let networkController = NetworkController()
         var currentTrip : Trip!
-        networkController.addTrip(tripName, username: "MyUser1", password: "password2") { (trip, errorDescription) -> Void in
+        let tripDict : NSMutableDictionary = ["name" : tripName]
+        networkController.addTrip(tripDict, username: "MyUser1", password: "password2") { (trip, errorDescription) -> Void in
             let tripName = trip["name"] as! String
             currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
             dispatch_async(dispatch_get_main_queue(), {
