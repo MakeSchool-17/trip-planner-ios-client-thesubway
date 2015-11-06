@@ -23,6 +23,7 @@ class CoreDataUtil {
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
         let newTrip : Trip = NSEntityDescription.insertNewObjectForEntityForName("Trip", inManagedObjectContext: context) as! Trip
         newTrip.setValue(value, forKey: key)
+        newTrip.setValue(NSDate(), forKey: "lastModified")
         do {
             try context.save()
         } catch {
@@ -41,6 +42,7 @@ class CoreDataUtil {
         newWaypoint.setValue(location["lat"], forKey: "latitude")
         newWaypoint.setValue(location["lng"], forKey: "longitude")
         newWaypoint.setValue(trip, forKey: "trip")
+        newWaypoint.setValue(NSDate(), forKey: "lastModified")
         do {
             try context.save()
         } catch {
