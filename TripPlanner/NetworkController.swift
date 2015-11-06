@@ -240,7 +240,7 @@ class NetworkController  {
         }
         task.resume()
     }
-    func getAllTripsForUser(username : String, password : String) {
+    func getAllTripsForUser(username : String, password : String, callback : (tripsArr : [NSDictionary], errorDescription: String?) -> Void) {
         let authHeader = self.createAuthHeader(username, password: password)
         let url = NSURL(string: "\(self.localUrl)trip/")!
         let request = NSMutableURLRequest(URL: url)
@@ -254,7 +254,7 @@ class NetworkController  {
                     print("everything is awesome!")
                     do {
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! [NSDictionary]
-                        print(json)
+                        callback(tripsArr: json, errorDescription: error?.description)
                     }
                     catch {
                         print(error)
