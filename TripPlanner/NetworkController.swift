@@ -142,7 +142,8 @@ class NetworkController  {
     }
     func addTrip(tripName : String, username : String, password : String) {
         let authHeader = self.createAuthHeader(username, password: password)
-        let content = ["name" : tripName]
+        let waypoints = NSMutableArray()
+        let content = ["name" : tripName, "waypoints" : waypoints]
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
         let url = NSURL(string: "\(self.localUrl)trip/")!
         let request = NSMutableURLRequest(URL: url)
