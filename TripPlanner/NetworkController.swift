@@ -163,10 +163,11 @@ class NetworkController  {
                     print("everything is awesome!")
                     do {
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSMutableDictionary
+                        let newJson = NSMutableDictionary(dictionary: json)
                         let dateStr = json["lastModified"] as! String
-                        json["lastModified"] = TypeConverter.stringToDateJSON(dateStr)
-                        callback(trip: json, errorDescription: error?.description)
-                        print(json)
+                        newJson["lastModified"] = TypeConverter.stringToDateJSON(dateStr)
+                        callback(trip: newJson, errorDescription: error?.description)
+                        print(newJson)
                     }
                     catch {
                         print(error)
