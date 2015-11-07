@@ -24,7 +24,9 @@ class CoreDataUtil {
         let newTrip : Trip = NSEntityDescription.insertNewObjectForEntityForName("Trip", inManagedObjectContext: context) as! Trip
         newTrip.setValue(dict["name"], forKey: "name")
         newTrip.setValue(dict["lastModified"], forKey: "lastModified")
-        newTrip.setValue(NSSet(array: dict["waypoints"] as! [AnyObject]), forKey: "waypoints")
+        let wpArr = dict["waypoints"] as! [NSDictionary]
+        let wpSet = TypeConverter.dictsToWpsToSet(wpArr, trip: newTrip)
+        newTrip.setValue(wpSet, forKey: "waypoints")
         newTrip.setValue(dict["_id"], forKey: "id")
         do {
             try context.save()
@@ -39,10 +41,15 @@ class CoreDataUtil {
         let context : NSManagedObjectContext = appDelegate.managedObjectContext
         let newWaypoint : Waypoint = NSEntityDescription.insertNewObjectForEntityForName("Waypoint", inManagedObjectContext: context) as! Waypoint
         newWaypoint.setValue(info["name"], forKey: "name")
-        let geometry = info["geometry"] as! NSDictionary
-        let location = geometry["location"] as! NSDictionary
-        newWaypoint.setValue(location["lat"], forKey: "latitude")
-        newWaypoint.setValue(location["lng"], forKey: "longitude")
+        if let geometry = info["geometry"] as? NSDictionary {
+            let location = geometry["location"] as! NSDictionary
+            newWaypoint.setValue(location["lat"], forKey: "latitude")
+            newWaypoint.setValue(location["lng"], forKey: "longitude")
+        }
+        else {
+            newWaypoint.setValue(info["latitude"], forKey: "longitude")
+            newWaypoint.setValue(info["longitude"], forKey: "longitude")
+        }
         newWaypoint.setValue(trip, forKey: "trip")
         newWaypoint.setValue(NSDate(), forKey: "lastModified")
         do {
