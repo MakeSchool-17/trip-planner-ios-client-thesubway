@@ -15,6 +15,16 @@ class NetworkController  {
     let localUrl = "http://127.0.0.1:5000/"
     init() {
     }
+    func waypointsToDict(waypoints : [Waypoint]) -> [NSDictionary] {
+        var dictArr : [NSDictionary] = []
+        for eachWaypoint in waypoints {
+            let objectArr = NSMutableArray(objects: eachWaypoint.name!, eachWaypoint.latitude!, eachWaypoint.longitude!)
+            let keyArr = ["name", "latitude", "longitude"]
+            let waypointDict = NSMutableDictionary(objects: objectArr as [AnyObject], forKeys: keyArr)
+            dictArr.append(waypointDict)
+        }
+        return dictArr
+    }
     func stringToDateJSON(dateString : String) -> NSDate {
         let dateFormatter : NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
@@ -191,14 +201,23 @@ class NetworkController  {
         }
         task.resume()
     }
-    func updateTrip(tripId : String, newName : String!, username : String, password : String, waypoints : [Waypoint]) {
+    func updateTrip(trip : Trip, newName : String!, username : String, password : String, waypoint : Waypoint!) {
         let authHeader = self.createAuthHeader(username, password: password)
-        let content = NSMutableDictionary(objects: [waypoints, tripId], forKeys: ["waypoints", "_id"])
+        let content = NSMutableDictionary(objects: [trip.id!], forKeys: ["_id"])
         if newName != nil {
                 content["name"] = newName!
         }
+        if waypoint != nil {
+            var wpArr = trip.waypoints!.allObjects as! [Waypoint]
+            wpArr.append(waypoint!)
+            let dictArr = self.waypointsToDict(wpArr)
+            content["waypoints"] = dictArr
+        }
+        let currentDate = NSDate()
+        content["lastModified"] = self.dateToStringJSON(currentDate)
+        
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
-        let url = NSURL(string: "\(self.localUrl)trip/\(tripId)")!
+        let url = NSURL(string: "\(self.localUrl)trip/\(trip.id!)")!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "PUT"
         request.HTTPBody = jsonData

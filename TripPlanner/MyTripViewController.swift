@@ -58,6 +58,8 @@ class MyTripViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func waypointAddedFromVC(waypoint: Waypoint) {
+        let networkController = NetworkController()
+        networkController.updateTrip(waypoint.trip!, newName: nil, username: "MyUser1", password: "password2", waypoint: waypoint)
         self.waypoints.append(waypoint)
     }
   
