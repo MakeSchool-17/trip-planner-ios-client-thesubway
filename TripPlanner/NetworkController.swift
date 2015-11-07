@@ -15,26 +15,6 @@ class NetworkController  {
     let localUrl = "http://127.0.0.1:5000/"
     init() {
     }
-    func waypointsToDict(waypoints : [Waypoint]) -> [NSDictionary] {
-        var dictArr : [NSDictionary] = []
-        for eachWaypoint in waypoints {
-            let objectArr = NSMutableArray(objects: eachWaypoint.name!, eachWaypoint.latitude!, eachWaypoint.longitude!)
-            let keyArr = ["name", "latitude", "longitude"]
-            let waypointDict = NSMutableDictionary(objects: objectArr as [AnyObject], forKeys: keyArr)
-            dictArr.append(waypointDict)
-        }
-        return dictArr
-    }
-    func stringToDateJSON(dateString : String) -> NSDate {
-        let dateFormatter : NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
-        return dateFormatter.dateFromString(dateString)!
-    }
-    func dateToStringJSON(date : NSDate) -> String {
-        let dateFormatter : NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
-        return dateFormatter.stringFromDate(date)
-    }
     func createAuthHeader(name : String, password : String) -> String {
         let pwstr = "\(name):\(password)"
         let plainData = pwstr.dataUsingEncoding(NSUTF8StringEncoding)
@@ -166,7 +146,7 @@ class NetworkController  {
         let currentDate = NSDate()
         let content = tripDict
         content["waypoints"] = waypoints
-        content["lastModified"] = self.dateToStringJSON(currentDate)
+        content["lastModified"] = TypeConverter.dateToStringJSON(currentDate)
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
         let url = NSURL(string: "\(self.localUrl)trip/")!
         let request = NSMutableURLRequest(URL: url)
@@ -184,7 +164,7 @@ class NetworkController  {
                     do {
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSMutableDictionary
                         let dateStr = json["lastModified"] as! String
-                        json["lastModified"] = self.stringToDateJSON(dateStr)
+                        json["lastModified"] = TypeConverter.stringToDateJSON(dateStr)
                         callback(trip: json, errorDescription: error?.description)
                         print(json)
                     }
@@ -210,11 +190,11 @@ class NetworkController  {
         if waypoint != nil {
             var wpArr = trip.waypoints!.allObjects as! [Waypoint]
             wpArr.append(waypoint!)
-            let dictArr = self.waypointsToDict(wpArr)
+            let dictArr = TypeConverter.waypointsToDict(wpArr)
             content["waypoints"] = dictArr
         }
         let currentDate = NSDate()
-        content["lastModified"] = self.dateToStringJSON(currentDate)
+        content["lastModified"] = TypeConverter.dateToStringJSON(currentDate)
         
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(content, options: NSJSONWritingOptions(rawValue: 0))
         let url = NSURL(string: "\(self.localUrl)trip/\(trip.id!)")!
@@ -261,7 +241,7 @@ class NetworkController  {
                     do {
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSMutableDictionary
                         let dateStr = json["lastModified"] as! String
-                        json["lastModified"] = self.stringToDateJSON(dateStr)
+                        json["lastModified"] = TypeConverter.stringToDateJSON(dateStr)
                         print(json)
                     }
                     catch {
@@ -295,7 +275,7 @@ class NetworkController  {
                         for eachDict in json {
                             let newDict = eachDict.mutableCopy() as! NSMutableDictionary
                             let dateStr = newDict["lastModified"] as! String
-                            newDict["lastModified"] = self.stringToDateJSON(dateStr)
+                            newDict["lastModified"] = TypeConverter.stringToDateJSON(dateStr)
                             newJson.append(newDict)
                         }
                         callback(tripsArr: newJson, errorDescription: error?.description)
