@@ -98,9 +98,9 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate, UISearchBa
         let userLocation : CLLocation! = locations.last
         self.userCoordinate = userLocation.coordinate
         //after search, no longer need to update extra times.
-        manager.stopUpdatingLocation()
+//        manager.stopUpdatingLocation()
         //ensure that didUpdateLocations no longer gets called:
-        manager.delegate = nil
+//        manager.delegate = nil
         
         //if no waypoint, then use the user's current region
         self.currentRegion = MKCoordinateRegion()
