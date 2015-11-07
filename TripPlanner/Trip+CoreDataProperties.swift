@@ -14,8 +14,9 @@ import CoreData
 
 extension Trip {
 
-    @NSManaged var name: String?
+    @NSManaged var id: String?
     @NSManaged var lastModified: NSDate?
+    @NSManaged var name: String?
     @NSManaged var waypoints: NSSet?
 
 }
