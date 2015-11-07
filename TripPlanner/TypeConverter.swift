@@ -19,6 +19,20 @@ class TypeConverter {
         }
         return dictArr
     }
+    class func dictsToWpsToSet(dicts : [NSDictionary], trip : Trip) -> NSSet {
+        //this function requires access to core data
+        var wpArr : [Waypoint] = []
+        for eachDict in dicts {
+            let wpName = eachDict["name"] as! String
+            var existingWaypoint = CoreDataUtil.getWaypoint("name", value: wpName)
+            if existingWaypoint == nil {
+                existingWaypoint = CoreDataUtil.addWaypoint(eachDict, forTrip: trip)
+            }
+            wpArr.append(existingWaypoint)
+        }
+        let wpSet = NSSet(array: wpArr)
+        return wpSet
+    }
     class func stringToDateJSON(dateString : String) -> NSDate {
         let dateFormatter : NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
