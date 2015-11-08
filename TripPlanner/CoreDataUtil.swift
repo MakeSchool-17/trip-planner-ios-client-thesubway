@@ -47,7 +47,7 @@ class CoreDataUtil {
             newWaypoint.setValue(location["lng"], forKey: "longitude")
         }
         else {
-            newWaypoint.setValue(info["latitude"], forKey: "longitude")
+            newWaypoint.setValue(info["latitude"], forKey: "latitude")
             newWaypoint.setValue(info["longitude"], forKey: "longitude")
         }
         newWaypoint.setValue(trip, forKey: "trip")
@@ -125,6 +125,8 @@ class CoreDataUtil {
             print("could not fetch")
             return nil
         }
+        let temp = waypoints![0]
+        print(temp.latitude!)
         return waypoints
     }
     class func deleteTrip(trip: Trip) -> Bool {
