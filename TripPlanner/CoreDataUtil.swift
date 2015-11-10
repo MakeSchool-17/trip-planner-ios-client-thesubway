@@ -125,8 +125,6 @@ class CoreDataUtil {
             print("could not fetch")
             return nil
         }
-        let temp = waypoints![0]
-        print(temp.latitude!)
         return waypoints
     }
     class func deleteTrip(trip: Trip) -> Bool {
