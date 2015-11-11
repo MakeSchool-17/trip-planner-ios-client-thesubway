@@ -48,7 +48,9 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
+            let networkController = NetworkController()
             let trip = self.trips[indexPath.row]
+            networkController.deleteTrip(trip.id!, username: "MyUser1", password: "password2")
             let waypoints = CoreDataUtil.searchWaypoints(forTrip: trip) as [Waypoint]
             let deleteResult = CoreDataUtil.deleteTrip(trip)
             if deleteResult == true {
