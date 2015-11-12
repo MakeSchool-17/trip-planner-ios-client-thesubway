@@ -32,7 +32,6 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
                     }
                 }
                 self.tableView.reloadData()
-                print(tripsArr)
             })
         }
     }
