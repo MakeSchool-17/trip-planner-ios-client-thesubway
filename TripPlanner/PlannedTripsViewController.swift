@@ -110,7 +110,6 @@ class PlannedTripsViewController: UIViewController, UITableViewDelegate, UITable
         //let currentTrip = CoreDataUtil.addTrip(tripName, key: "name")
         var arrResults = CoreDataUtil.searchTrip("name", value: tripName) as [NSManagedObject]
         arrResults = CoreDataUtil.getTrips() as [Trip]
-        print("arrResults: \(arrResults)")
     }
 }
 
